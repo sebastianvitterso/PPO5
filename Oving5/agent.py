@@ -10,17 +10,20 @@ class Agent:
         self.passcode_change2 = ""
         self.override_signal = 0
 
+    def set_override(self, num):
+        self.override_signal = num
+
     def get_next(self):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
         if self.override_signal == 0:
             while True:
                 if self.keypad.current_keypress is not None:
                     return self.keypad.current_keypress
         elif self.override_signal == 1:
-            return self.verify_login("")
-        elif self.override_signal == 2:
-            return self.verify_change_inputs("")
+            var = self.verify_login_2()
+            self.override_signal = 0
+            return var
         else:
-            return "Override signal not 0, 1 or 2"
+            return "Override signal not 0 or 1"
 
     def pass_function(self, char):  # a0
         pass
@@ -32,6 +35,9 @@ class Agent:
         self.passcode_login += char
 
     def verify_login(self, char):  # a3
+        self.override_signal = 1
+
+    def verify_login_2(self):
         if self.passcode_login == self.passcode_saved:
             # lysshow
             return "Y"
@@ -46,6 +52,7 @@ class Agent:
 
     def fully_activate_agent(self, char):  # a5
         # lysshow
+        print("Access Granted!")
         pass
 
     def reset_change_1(self, char):  # a6
@@ -77,9 +84,16 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        Agent.__init__(None, None)
+        Agent.__init__(self, None, None)
 
     def get_next(self):
-        return input("Skriv inn et tall som skal gis til FSM: ")
+        if self.override_signal == 0:
+            return input("Skriv inn et tall som skal gis til FSM: ")
+        elif self.override_signal == 1:
+            var = self.verify_login_2()
+            self.override_signal = 0
+            return var
+        else:
+            return "Override signal not 0 or 1"
 
 
