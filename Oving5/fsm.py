@@ -1,7 +1,6 @@
 import re
 from inspect import isfunction
 
-
 class FSM:
     def __init__(self):
         self.states = [[Rule("Wakeup", 0, 1, r"\d" , reset_password_accumulator)]]
@@ -16,12 +15,22 @@ class FSM:
         return True;
 
     def run_rules(self):
-        return True;
+        for rule in self.states[self.current_state]:
+            if apply_rule(rule):
+                self.fire_rule(rule);
+                return;
 
-    def apply_rule(self):
-        return True;
+    def apply_rule(self, rule):
+        # Her må vi legge til logikk for å sjekke om regelen skal brukes
+        if self.current_state == rule.state1:
+            if True:
+                return True;
+            
+        return False;
 
-    def fire_rule(self):
+    def fire_rule(self, rule):
+        self.current_state = rule.state2;
+        # Her må vi gjøre noe for å kalle regelen sin handling
         return True;
 
     def main_loop(self):
@@ -43,3 +52,4 @@ class Rule:
 
 if __name__ == "__main__":
     fsm = FSM()
+
