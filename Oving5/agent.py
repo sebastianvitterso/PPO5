@@ -86,6 +86,13 @@ class AgentProxy(Agent):
         Agent.__init__(None, None)
 
     def get_next(self):
-        return input("Skriv inn et tall som skal gis til FSM: ")
+        if self.override_signal == 0:
+            return input("Skriv inn et tall som skal gis til FSM: ")
+        elif self.override_signal == 1:
+            var = self.verify_login_2()
+            self.override_signal = 0
+            return var
+        else:
+            return "Override signal not 0 or 1"
 
 
