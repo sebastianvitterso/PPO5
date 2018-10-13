@@ -5,11 +5,13 @@ from agent import*
 class FSM:
     def __init__(self):
         self.agent = AgentProxy()
-        self.states = [[Rule("Wakeup", 0, 1, signal_is_digit , self.agent.reset_pw_acc1)]]
+        self.states = []
         self.current_state = 0
         self.current_signal = "";
     
     def add_rule(self, name, state1, state2, signal, action):
+        while len(self.states) < max(state1, state2):
+            self.states.append([])
         new_rule = Rule(name, state1, state2, signal, action);
         self.states[state1].append(new_rule);
 
@@ -33,7 +35,7 @@ class FSM:
     def fire_rule(self, rule):
         self.current_state = rule.state2;
         # Her må vi gjøre noe for å kalle regelen sin handling
-        rule.action(self.agent, self.current_signal);
+        rule.action(self.current_signal);
 
     def main_loop(self):
         while True:
@@ -49,7 +51,7 @@ class Rule:
         self.action = action
 
     def __str__(self):
-        return self.name + str(self.state1) + " -> " + str(self.state2) + str(self.signal) + str(self.action)
+        return self.name + " " + str(self.state1) + " -> " + str(self.state2) + str(self.signal) + str(self.action)
 
 
 def signal_is_digit(signal):
@@ -61,9 +63,15 @@ def signal_is_asterisk(signal):
 def signal_is_pound(signal):
     return ord(signal) == 35;
 
+def giveTrue(signal):
+    return True
+
 if __name__ == "__main__":
     fsm = FSM()
-    print(fsm.states[0][0])
+    fsm.add_rule("Wakeup", 0, 1, signal_is_digit, fsm.agent.reset_pw_acc1)
+    fsm.add_rule("AppendDigit", 1, 1, signal_is_digit, fsm.agent.append_digit)
+    fsm.add_rule("GoToVerify", 1, 2, signal_is_asterisk, fsm.agent.verify_login)
+    fsm.add_rule("FailVerify", 1, 0, giveTrue, fsm.agent.reset_agent)
     fsm.main_loop()
 
 
