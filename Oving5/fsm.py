@@ -5,7 +5,7 @@ class FSM:
     def __init__(self):
         self.states = [[Rule("Wakeup", 0, 1, r"\d" , reset_password_accumulator)]]
         self.current_state = 0
-        self.current_signal
+        self.current_signal = None;
     
     def add_rule(self, name, state1, state2, signal, action):
         new_rule = Rule(name, state1, state2, signal, action);
@@ -16,7 +16,7 @@ class FSM:
 
     def run_rules(self):
         for rule in self.states[self.current_state]:
-            if apply_rule(rule):
+            if self.apply_rule(rule):
                 self.fire_rule(rule);
                 return;
 
