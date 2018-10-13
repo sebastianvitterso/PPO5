@@ -43,4 +43,3 @@ class Rule:
 
 if __name__ == "__main__":
     fsm = FSM()
-
