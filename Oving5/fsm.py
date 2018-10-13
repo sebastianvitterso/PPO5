@@ -3,7 +3,7 @@ from inspect import isfunction
 
 class FSM:
     def __init__(self):
-        self.states = [[Rule("Wakeup", 0, 1, r"\d" , reset_password_accumulator)]]
+        self.states = [[Rule("Wakeup", 0, 1, signal_is_digit , reset_password_accumulator)]]
         self.current_state = 0
         self.current_signal = None;
     
