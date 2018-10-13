@@ -8,8 +8,9 @@ class FSM:
         self.current_state = 0
         self.current_signal
     
-    def add_rule(self):
-        return True;
+    def add_rule(self, name, state1, state2, signal, action):
+        new_rule = Rule(name, state1, state2, signal, action);
+        self.states[state1].append(new_rule);
 
     def get_next_signal(self):
         return True;
@@ -24,7 +25,9 @@ class FSM:
         return True;
 
     def main_loop(self):
-        return True;
+        while True:
+            self.current_signal = self.get_next_signal();
+            self.run_rules();
 
 class Rule:
     def __init__(self, name, state1, state2, signal, action):
