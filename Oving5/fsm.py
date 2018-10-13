@@ -49,7 +49,8 @@ class Rule:
         self.action = action
 
     def __str__(self):
-        print(self.name + str(self.state1) + "->" + str(self.state2) + str(self.signal) + str(self.action))
+        return self.name + str(self.state1) + " -> " + str(self.state2) + str(self.signal) + str(self.action)
+
 
 def signal_is_digit(signal):
     return 48 <= ord(signal) <= 57;
@@ -62,6 +63,7 @@ def signal_is_pound(signal):
 
 if __name__ == "__main__":
     fsm = FSM()
+    print(fsm.states[0][0])
 
 
 

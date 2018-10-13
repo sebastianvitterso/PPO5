@@ -69,7 +69,7 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        super(Agent, self).__init__(None, None)
+        super(Agent, self).__init__()
 
     def get_next(self):
         return input("Skriv inn et tall som skal gis til FSM: ")
