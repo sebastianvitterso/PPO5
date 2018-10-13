@@ -7,7 +7,24 @@ class FSM:
         self.states = [[Rule("Wakeup", 0, 1, r"\d" , reset_password_accumulator)]]
         self.current_state = 0
         self.current_signal
+    
+    def add_rule(self):
+        return True;
 
+    def get_next_signal(self):
+        return True;
+
+    def run_rules(self):
+        return True;
+
+    def apply_rule(self):
+        return True;
+
+    def fire_rule(self):
+        return True;
+
+    def main_loop(self):
+        return True;
 
 class Rule:
     def __init__(self, name, state1, state2, signal, action):
