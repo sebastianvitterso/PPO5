@@ -8,11 +8,19 @@ class Agent:
         self.passcode_login = ""
         self.passcode_change1 = ""
         self.passcode_change2 = ""
+        self.override_signal = 0
 
     def get_next(self):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
-        while True:
-            if self.keypad.current_keypress is not None:
-                return self.keypad.current_keypress
+        if self.override_signal == 0:
+            while True:
+                if self.keypad.current_keypress is not None:
+                    return self.keypad.current_keypress
+        elif self.override_signal == 1:
+            return self.verify_login("")
+        elif self.override_signal == 2:
+            return self.verify_change_inputs("")
+        else:
+            return "Override signal not 0, 1 or 2"
 
     def pass_function(self, char):  # a0
         pass
@@ -52,7 +60,7 @@ class Agent:
     def append_digit_change_2(self, char):  # a9
         self.passcode_change2 += char
 
-    def verify_change_inputs(self):  # a10
+    def verify_change_inputs(self, char):  # a10
         if self.passcode_change1 == self.passcode_change2:
             # lysshow
             self.passcode_saved = self.passcode_change1
@@ -69,8 +77,7 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        super(Agent, self).__init__()
-        self.passcode_saved = "1234"
+        Agent.__init__(None, None)
 
     def get_next(self):
         return input("Skriv inn et tall som skal gis til FSM: ")
