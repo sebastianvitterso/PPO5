@@ -9,21 +9,21 @@ class Agent:
         self.passcode_change1 = ""
         self.passcode_change2 = ""
 
-    def get_next(self):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
+    def get_next(self, char):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
         while True:
             if self.keypad.current_keypress is not None:
                 return self.keypad.current_keypress
 
-    def pass_function(self): # a0
+    def pass_function(self, char):  # a0
         pass
 
-    def reset_pw_acc1(self):  # a1
+    def reset_pw_acc1(self, char):  # a1
         self.passcode_login = ""
 
     def append_digit(self, char):  # a2
         self.passcode_login += char
 
-    def verify_login(self):  # a3
+    def verify_login(self, char):  # a3
         if self.passcode_login == self.passcode_saved:
             # lysshow
             return "Y"
@@ -31,19 +31,19 @@ class Agent:
             # blinkelys
             return "N"
 
-    def reset_agent(self):  # a4
+    def reset_agent(self, char):  # a4
         self.passcode_login = ""
         self.passcode_change1 = ""
         self.passcode_change2 = ""
 
-    def fully_activate_agent(self):  # a5
+    def fully_activate_agent(self, char):  # a5
         # lysshow
         pass
 
-    def reset_change_1(self):  # a6
+    def reset_change_1(self, char):  # a6
         self.passcode_change1 = ""
 
-    def reset_change_2(self):  # a7
+    def reset_change_2(self, char):  # a7
         self.passcode_change2 = ""
 
     def append_digit_change_1(self, char):  # a8
@@ -58,12 +58,12 @@ class Agent:
             self.passcode_saved = self.passcode_change1
         else:
             # blinkelys
-            self.reset_both_changers()
+            self.reset_both_changers("")
 
-    def reset_both_changers(self):  # a11
+    def reset_both_changers(self, char):  # a11
         # blinkelys
-        self.reset_change_1()
-        self.reset_change_2()
+        self.reset_change_1("")
+        self.reset_change_2("")
 
 
 class AgentProxy(Agent):
@@ -71,7 +71,7 @@ class AgentProxy(Agent):
     def __init__(self):
         super(Agent, self).__init__()
 
-    def get_next(self):
+    def get_next(self, char):
         return input("Skriv inn et tall som skal gis til FSM: ")
 
 
