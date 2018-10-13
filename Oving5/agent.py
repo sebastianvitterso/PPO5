@@ -69,7 +69,7 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        super(Agent, self).__init__()
+        super(Agent, self).__init__(None, None)
         self.passcode_saved = "1234"
 
     def get_next(self):
