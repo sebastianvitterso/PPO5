@@ -1,9 +1,11 @@
 import re
 from inspect import isfunction
+from agent import*
 
 class FSM:
     def __init__(self):
-        self.states = [[Rule("Wakeup", 0, 1, signal_is_digit , reset_password_accumulator)]]
+        self.agent = AgentProxy()
+        self.states = [[Rule("Wakeup", 0, 1, signal_is_digit , self.agent.reset_pw_acc1())]]
         self.current_state = 0
         self.current_signal = None;
     
@@ -31,7 +33,7 @@ class FSM:
     def fire_rule(self, rule):
         self.current_state = rule.state2;
         # Her må vi gjøre noe for å kalle regelen sin handling
-        rule.action(agent, self.current_symbol);
+        rule.action(self.agent, self.current_symbol);
 
     def main_loop(self):
         while True:
