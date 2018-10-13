@@ -40,8 +40,10 @@ class FSM:
     def main_loop(self):
         while True:
             print(self.current_state)
+            print(self.current_signal)
             self.get_next_signal();
             self.run_rules();
+            print(self.agent.passcode_login)
 
 
 class Rule:
@@ -68,12 +70,13 @@ def signal_is_pound(signal):
 def giveTrue(signal):
     return True
 
+
 if __name__ == "__main__":
     fsm = FSM()
     fsm.add_rule("Wakeup", 0, 1, signal_is_digit, fsm.agent.reset_pw_acc1)
     fsm.add_rule("AppendDigit", 1, 1, signal_is_digit, fsm.agent.append_digit)
     fsm.add_rule("GoToVerify", 1, 2, signal_is_asterisk, fsm.agent.verify_login)
-    fsm.add_rule("FailVerify", 1, 0, giveTrue, fsm.agent.reset_agent)
+    fsm.add_rule("GoToStart", 1, 0, giveTrue, fsm.agent.reset_agent)
     fsm.main_loop()
 
 

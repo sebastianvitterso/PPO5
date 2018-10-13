@@ -69,8 +69,7 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        super(Agent, self).__init__()
-        self.passcode_saved = "1234"
+        Agent.__init__(self, None, None)
 
     def get_next(self):
         return input("Skriv inn et tall som skal gis til FSM: ")
