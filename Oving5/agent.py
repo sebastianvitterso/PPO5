@@ -9,7 +9,7 @@ class Agent:
         self.passcode_change1 = ""
         self.passcode_change2 = ""
 
-    def get_next(self, char):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
+    def get_next(self):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
         while True:
             if self.keypad.current_keypress is not None:
                 return self.keypad.current_keypress
