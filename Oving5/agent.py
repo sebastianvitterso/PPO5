@@ -52,6 +52,7 @@ class Agent:
 
     def fully_activate_agent(self, char):  # a5
         # lysshow
+        print("Access Granted!")
         pass
 
     def reset_change_1(self, char):  # a6
@@ -83,7 +84,7 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        Agent.__init__(None, None)
+        Agent.__init__(self, None, None)
 
     def get_next(self):
         if self.override_signal == 0:
