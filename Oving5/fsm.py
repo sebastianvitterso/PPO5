@@ -14,7 +14,7 @@ class FSM:
         self.states[state1].append(new_rule);
 
     def get_next_signal(self):
-        return True;
+        self.current_signal = self.agent.get_next();
 
     def run_rules(self):
         for rule in self.states[self.current_state]:
