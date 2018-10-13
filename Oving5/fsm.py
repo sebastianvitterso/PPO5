@@ -49,10 +49,17 @@ class Rule:
     def __str__(self):
         print(self.name + str(self.state1) + "->" + str(self.state2) + str(self.signal) + str(self.action))
 
+def signal_is_digit(signal):
+    return 48 <= ord(signal) <= 57;
+
+def signal_is_asterisk(signal):
+    return ord(signal) == 42;
+
+def signal_is_pound(signal):
+    return ord(signal) == 35;
 
 if __name__ == "__main__":
     fsm = FSM()
 
 
-def signal_is_digit(signal):
-    return 48 <= ord(signal) <= 57;
+
