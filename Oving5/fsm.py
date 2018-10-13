@@ -23,7 +23,7 @@ class FSM:
     def apply_rule(self, rule):
         # Her må vi legge til logikk for å sjekke om regelen skal brukes
         if self.current_state == rule.state1:
-            if True:
+            if rule.symbol(self.current_signal):
                 return True;
             
         return False;
@@ -31,7 +31,7 @@ class FSM:
     def fire_rule(self, rule):
         self.current_state = rule.state2;
         # Her må vi gjøre noe for å kalle regelen sin handling
-        return True;
+        rule.action(agent, self.current_symbol);
 
     def main_loop(self):
         while True:
@@ -53,3 +53,6 @@ class Rule:
 if __name__ == "__main__":
     fsm = FSM()
 
+
+def signal_is_digit(signal):
+    return 48 <= ord(signal) <= 57;
