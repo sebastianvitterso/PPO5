@@ -1,7 +1,6 @@
 import re
 from inspect import isfunction
 
-
 class FSM:
     def __init__(self):
         self.states = [[Rule("Wakeup", 0, 1, r"\d" , reset_password_accumulator)]]
