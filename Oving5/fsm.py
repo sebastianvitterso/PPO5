@@ -10,7 +10,7 @@ class FSM:
         self.current_signal = "";
     
     def add_rule(self, name, state1, state2, signal, action):
-        while len(self.states) < max(state1, state2):
+        while len(self.states) <= state1:
             self.states.append([])
         new_rule = Rule(name, state1, state2, signal, action);
         self.states[state1].append(new_rule);
@@ -39,8 +39,10 @@ class FSM:
 
     def main_loop(self):
         while True:
+            print(self.current_state)
             self.get_next_signal();
             self.run_rules();
+
 
 class Rule:
     def __init__(self, name, state1, state2, signal, action):
