@@ -3,16 +3,27 @@ import time
 
 class LED_Board():
     def __init__(self):
-        return True;
+        self.pins = [18, 23, 24];
+        self.pin_led_states = [
+                [1, 0, -1], # A
+                [0, 1, -1], # B
+                [-1, 1, 0], # C
+                [-1, 0, 1], # D
+                [1, -1, 0], # E
+                [0, -1, 1]  # F
+            ];
 
     def setup(self):
         GPIO.setmode(GPIO.BCM);
+        for i in range(0, 6):
+            GPIO.setup(i, GPIO.OUT);
 
     def light_led(self, light):
-        return True;
+        GPIO.ouput(light, GPIO.HIGH);
 
     def flash_all_leds(self, duration):
-        return True;
+        for i in range(0, 6):
+            self.light_led(i);
     
     def twinkle_all_leds(self, duration):
         return True;
