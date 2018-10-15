@@ -85,6 +85,7 @@ if __name__ == "__main__":
     fsm.add_rule("GoToStart", 1, 0, giveTrue, fsm.agent.reset_agent)
     fsm.add_rule("Successverify", 2, 3, signal_is_Y, fsm.agent.fully_activate_agent)
     fsm.add_rule("FailureVerify", 2,0, signal_is_N, fsm.agent.reset_agent)
+    fsm.add_rule("Select LED", 3, 4, signal_is_LED_number, fsm.agent.select_led)
     fsm.main_loop()
 
 
