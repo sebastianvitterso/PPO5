@@ -9,6 +9,8 @@ class Agent:
         self.passcode_change1 = ""
         self.passcode_change2 = ""
         self.override_signal = 0
+        self.selected_led = 0
+        self.led_duration = ""
 
     def set_override(self, num):
         self.override_signal = num
@@ -79,6 +81,15 @@ class Agent:
         # blinkelys
         self.reset_change_1("")
         self.reset_change_2("")
+
+    def select_led(self, char):
+        self.selected_led = int(char)
+
+    def append_duration(self, char):
+        self.led_duration += char
+
+    def execute_led(self, char):
+        return True
 
 
 class AgentProxy(Agent):

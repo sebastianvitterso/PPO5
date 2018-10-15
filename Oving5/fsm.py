@@ -76,6 +76,9 @@ def signal_is_Y(signal):
 def signal_is_N(signal):
     return ord(signal) == ord("N")
 
+def signal_is_led_number(signal):
+    return 49 <= ord(signal) <= 54
+
 
 if __name__ == "__main__":
     fsm = FSM()
