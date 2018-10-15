@@ -89,7 +89,13 @@ class Agent:
         self.led_duration += char
 
     def execute_led(self, char):
-        return True
+        pass
+
+    def clear_duration(self, char):
+        pass
+
+    def verify_change_input(self, char):
+        pass
 
 
 class AgentProxy(Agent):
