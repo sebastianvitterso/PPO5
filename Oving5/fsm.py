@@ -7,42 +7,42 @@ class FSM:
         self.agent = AgentProxy()
         self.states = []
         self.current_state = 0
-        self.current_signal = "";
+        self.current_signal = ""
     
     def add_rule(self, name, state1, state2, signal, action):
         while len(self.states) <= state1:
             self.states.append([])
-        new_rule = Rule(name, state1, state2, signal, action);
-        self.states[state1].append(new_rule);
+        new_rule = Rule(name, state1, state2, signal, action)
+        self.states[state1].append(new_rule)
 
     def get_next_signal(self):
-        self.current_signal = self.agent.get_next();
+        self.current_signal = self.agent.get_next()
 
     def run_rules(self):
         for rule in self.states[self.current_state]:
             if self.apply_rule(rule):
-                self.fire_rule(rule);
-                return;
+                self.fire_rule(rule)
+                return
 
     def apply_rule(self, rule):
         # Her må vi legge til logikk for å sjekke om regelen skal brukes
         if self.current_state == rule.state1:
             if rule.signal(self.current_signal):
-                return True;
+                return True
             
-        return False;
+        return False
 
     def fire_rule(self, rule):
-        self.current_state = rule.state2;
+        self.current_state = rule.state2
         # Her må vi gjøre noe for å kalle regelen sin handling
-        rule.action(self.current_signal);
+        rule.action(self.current_signal)
 
     def main_loop(self):
         while True:
             print(self.current_state)
             print(self.current_signal)
-            self.get_next_signal();
-            self.run_rules();
+            self.get_next_signal()
+            self.run_rules()
             print(self.agent.passcode_login)
 
 
@@ -59,13 +59,13 @@ class Rule:
 
 
 def signal_is_digit(signal):
-    return 48 <= ord(signal) <= 57;
+    return 48 <= ord(signal) <= 57
 
 def signal_is_asterisk(signal):
-    return ord(signal) == 42;
+    return ord(signal) == 42
 
 def signal_is_pound(signal):
-    return ord(signal) == 35;
+    return ord(signal) == 35
 
 def giveTrue(signal):
     return True
