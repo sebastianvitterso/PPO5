@@ -14,7 +14,7 @@ class Keypad:
 
         self.signals = [['1', '2', '3'],
                         ['4', '5', '6'],
-                        ['7', '8', '9'],
+                        ['7', '8', '9'],
                         ['*', '0', '#']]
 
     def get_signal(self):
@@ -32,7 +32,7 @@ class Keypad:
     def poll_button(self, col):
         for i in range(0, 20):
             if GPIO.input(col) != GPIO.HIGH:
-                return false
+                return False
 
             time.sleep(20)
 
