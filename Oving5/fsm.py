@@ -84,8 +84,19 @@ if __name__ == "__main__":
     fsm.add_rule("GoToVerify", 1, 2, signal_is_asterisk, fsm.agent.verify_login)
     fsm.add_rule("GoToStart", 1, 0, giveTrue, fsm.agent.reset_agent)
     fsm.add_rule("Successverify", 2, 3, signal_is_Y, fsm.agent.fully_activate_agent)
-    fsm.add_rule("FailureVerify", 2,0, signal_is_N, fsm.agent.reset_agent)
-    fsm.add_rule("Select LED", 3, 4, signal_is_LED_number, fsm.agent.select_led)
+    fsm.add_rule("FailureVerify", 2, 0, signal_is_N, fsm.agent.reset_agent)
+
+    fsm.add_rule("Select LED", 3, 4, signal_is_led_number, fsm.agent.select_led)
+    fsm.add_rule("Choose duration", 4, 4, signal_is_digit, fsm.agent.append_duration)
+    fsm.add_rule("Execute LED action", 4, 3, signal_is_asterisk, fsm.agent.execute_led)
+    fsm.add_rule("Cancel LED action", 4, 3, signal_is_pound, fsm.agent.clear_duration)
+
+    fsm.add_rule("Change password", 3, 5, signal_is_asterisk, fsm.agent.pass_function)
+    fsm.add_rule("Append digits to new password", 5, 5, signal_is_digit, fsm.agent.append_digit_change_1)
+    fsm.add_rule("Finish new password", 5, 6, signal_is_asterisk, fsm.agent.pass_function)
+    fsm.add_rule("Enter password again", 6, 6, signal_is_digit, fsm.agent.append_digit_change_2)
+    fsm.add_rule("Verify passwords match", 6, 3, signal_is_asterisk, fsm.agent.verify_change_input)
+
     fsm.main_loop()
 
 
