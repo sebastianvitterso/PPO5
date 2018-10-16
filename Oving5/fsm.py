@@ -107,6 +107,10 @@ if __name__ == "__main__":
     fsm.add_rule("Enter password again", 6, 6, signal_is_digit, fsm.agent.append_digit_change_2)
     fsm.add_rule("Verify passwords match", 6, 3, signal_is_asterisk, fsm.agent.verify_change_input)
 
+    fsm.add_rule("Verify Logout", 3, 7, signal_is_pound, fsm.agent.verify_logout)
+    fsm.add_rule("Logout final", 7, 0, signal_is_pound, fsm.agent.logout)
+    fsm.add_rule("Cancel Logout", 7, 3, give_true, fsm.agent.cancel_logout)
+
     fsm.main_loop()
 
 
