@@ -41,7 +41,9 @@ class Agent:
         self.override_signal = 1
 
     def verify_login_2(self):
-        current_passcode = open(self.passcode_location, 'r').read().strip()  # TODO: må denne closes?
+        file = open(self.passcode_location, 'r')
+        current_passcode = file.read().strip()
+        file.close()
         if self.passcode_login == current_passcode:
             # lysshow
             return "Y"
