@@ -101,6 +101,15 @@ class Agent:
     def verify_change_input(self, char):
         pass
 
+    def logout(self, char):
+        print("Logout Succesful!")
+
+    def verify_logout(self, char):
+        print("Are you sure you want to log out?")
+
+    def cancel_logout(self, char):
+        print("Logout cancelled!")
+
 
 class AgentProxy(Agent):
 
