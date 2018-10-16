@@ -4,7 +4,8 @@ class Agent:
     def __init__(self, keypad, ledboard):
         self.keypad = keypad
         self.ledboard = ledboard
-        self.passcode_saved = "1234"
+        self.passcode_location = "passcode.txt"
+        # self.passcode_saved = "1234"
         self.passcode_login = ""
         self.passcode_change1 = ""
         self.passcode_change2 = ""
@@ -40,7 +41,8 @@ class Agent:
         self.override_signal = 1
 
     def verify_login_2(self):
-        if self.passcode_login == self.passcode_saved:
+        current_passcode = open(self.passcode_location, 'r').read().strip()  # TODO: må denne closes?
+        if self.passcode_login == current_passcode:
             # lysshow
             return "Y"
         else:
@@ -55,7 +57,6 @@ class Agent:
     def fully_activate_agent(self, char):  # a5
         # lysshow
         print("Access Granted!")
-        pass
 
     def reset_change_1(self, char):  # a6
         self.passcode_change1 = ""
@@ -72,7 +73,10 @@ class Agent:
     def verify_change_inputs(self, char):  # a10
         if self.passcode_change1 == self.passcode_change2:
             # lysshow
-            self.passcode_saved = self.passcode_change1
+            file = open(self.passcode_location, 'w')
+            file.write(self.passcode_change1)
+            file.close()
+            # self.passcode_saved = self.passcode_change1
         else:
             # blinkelys
             self.reset_both_changers("")
