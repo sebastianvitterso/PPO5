@@ -75,7 +75,7 @@ class Agent:
     def verify_change_inputs(self, char):  # a10
         if self.passcode_change1 == self.passcode_change2:
             # lysshow
-            file = open(self.passcode_location, 'w')
+            file = open(self.passcode_location, 'w+')
             file.write(self.passcode_change1)
             file.close()
             # self.passcode_saved = self.passcode_change1
@@ -98,9 +98,6 @@ class Agent:
         pass
 
     def clear_duration(self, char):
-        pass
-
-    def verify_change_input(self, char):
         pass
 
     def logout(self, char):
