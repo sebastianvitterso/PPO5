@@ -7,12 +7,12 @@ class LED_Board:
     def __init__(self):
         self.pins = [19, 13, 6]
         self.pin_led_states = [
-                [1, 0, -1], # A
-                [0, 1, -1], # B
-                [-1, 1, 0], # C
-                [-1, 0, 1], # D
-                [1, -1, 0], # E
-                [0, -1, 1]  # F
+                [1, 0, -1], # 1
+                [0, 1, -1], # 2
+                [1, -1, 0], # 3
+                [0, -1, 1], # 4
+                [-1, 1, 0], # 5
+                [-1, 0, 1]  # 6
             ]
 
     def setup(self):
@@ -51,7 +51,7 @@ class LED_Board:
             time.sleep(.200)
     
     def twinkle_all_leds(self):
-        for i in range(0, 10):
+        for i in range(0, 60):
             self.light_led(random.randint(0, 5))
             time.sleep(.100)
         self.clear_leds()

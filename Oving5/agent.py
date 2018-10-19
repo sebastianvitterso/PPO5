@@ -37,6 +37,7 @@ class Agent:
         pass
 
     def reset_pw_acc1(self, char):  # a1
+        self.led_board.twinkle_all_leds()
         self.passcode_login = ""
 
     def append_digit(self, char):  # a2
@@ -50,10 +51,10 @@ class Agent:
         current_passcode = file.read().strip()
         file.close()
         if self.passcode_login == current_passcode:
-            # lysshow
+            self.led_board.twinkle_all_leds()
             return "Y"
         else:
-            # blinkelys
+            self.led_board.flash_all_leds()
             return "N"
 
     def reset_agent(self, char):  # a4
