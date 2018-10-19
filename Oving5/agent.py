@@ -58,7 +58,7 @@ class Agent:
             return "N"
 
     def reset_agent(self, char):  # hvis feil
-        self.led_board.flash_all_leds()
+        self.led_board.power_off()
         self.passcode_login = ""
         self.passcode_change1 = ""
         self.passcode_change2 = ""
