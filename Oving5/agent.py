@@ -15,6 +15,8 @@ class Agent:
         self.led_board = LED_Board()
         self.key_pad = Keypad()
 
+        self.led_board.setup()
+
     def set_override(self, num):
         self.override_signal = num
 
