@@ -16,7 +16,7 @@ class Agent:
     def set_override(self, num):
         self.override_signal = num
 
-    def get_next(self):  # må kanskje modifiseres, om keypad kun gir tilbake col/row
+    def get_next(self):  # maa kanskje modifiseres, om keypad kun gir tilbake col/row
         if self.override_signal == 0:
             while True:
                 if self.keypad.current_keypress is not None:
@@ -75,7 +75,7 @@ class Agent:
     def verify_change_inputs(self, char):  # a10
         if self.passcode_change1 == self.passcode_change2:
             # lysshow
-            file = open(self.passcode_location, 'w+')
+            file = open(self.passcode_location, 'w')
             file.write(self.passcode_change1)
             file.close()
             # self.passcode_saved = self.passcode_change1
