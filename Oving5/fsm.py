@@ -40,11 +40,11 @@ class FSM:
 
     def main_loop(self):
         while True:
-            print(self.current_state)
-            print(self.current_signal)
+            print("Current state: " + str(self.current_state))
+            print("Current signal: " + str(self.current_signal))
             self.get_next_signal()
             self.run_rules()
-            print(self.agent.passcode_login)
+            print("Current input-sequence: " + self.agent.passcode_login)
 
 
 class Rule:
