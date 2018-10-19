@@ -94,16 +94,22 @@ class Agent:
         self.reset_change_2("")
 
     def select_led(self, char):
-        self.selected_led = int(char)+1
+        self.selected_led = int(char)-1
+        print("Turning on LED.")
 
     def append_duration(self, char):
         self.led_duration += char
 
     def execute_led(self, char):
+        print("Turned on LED ", str(self.selected_led), " for ", str(self.led_duration), " seconds.")
         duration = int(self.led_duration)
+
+        self.clear_duration(" ")
+
         self.led_board.light_led(self.selected_led)
         time.sleep(duration)
         self.led_board.clear_leds()
+        print("Turned off LED.")
 
     def clear_duration(self, char):
         self.led_duration = ""
