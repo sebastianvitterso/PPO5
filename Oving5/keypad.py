@@ -35,7 +35,7 @@ class Keypad:
 
     def poll_button(self, col):
         for i in range(0, 20):
-            if GPIO.input(col) != GPIO.HIGH:
+            if GPIO.input(col) != GPIO.LOW:
                 return False
 
             time.sleep(20)
