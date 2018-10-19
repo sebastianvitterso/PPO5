@@ -54,6 +54,7 @@ class LED_Board:
         for i in range(0, 10):
             self.light_led(random.randint(0, 5))
             time.sleep(.100)
+        self.clear_leds()
 
     def power_off(self):
         self.flash_all_leds()
