@@ -57,7 +57,13 @@ class LED_Board:
         self.clear_leds()
 
     def power_off(self):
-        self.flash_all_leds()
+        for i in range(1, 7):
+            for j in range(0, 10000):
+                for k in range(0, i):
+                    self.light_led(k)
+
+        self.clear_leds();
+
 
     def power_on(self):
         self.twinkle_all_leds()
