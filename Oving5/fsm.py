@@ -35,7 +35,7 @@ class FSM:
 
     def fire_rule(self, rule):
         self.current_state = rule.state2
-        # Her maa vi gjoere noe for å kalle regelen sin handling
+        # Her maa vi gjoere noe for aa kalle regelen sin handling
         rule.action(self.current_signal)
 
     def main_loop(self):

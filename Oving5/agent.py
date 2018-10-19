@@ -103,7 +103,7 @@ class Agent:
     def clear_duration(self, char):
         self.led_duration = "";
 
-    def logout(self, char):7
+    def logout(self, char):
         self.led_board.power_off();
         print("Logout Succesful!")
 

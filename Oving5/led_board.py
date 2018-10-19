@@ -21,11 +21,11 @@ class LED_Board:
             GPIO.setup(self.pins[i], GPIO.OUT)
 
     def light_led(self, light):
-        # Skru først av alle LEDs
+        # Skru foerst av alle LEDs
         for i in range(0, 3):
             GPIO.output(self.pins[i], GPIO.LOW)
 
-        # Skru på den valgte LEDen
+        # Skru paa den valgte LEDen
         for i in self.pin_led_states[light]:
             GPIO.ouput(i, GPIO.HIGH)
 
