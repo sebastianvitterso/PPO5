@@ -1,5 +1,3 @@
-#  import re
-#  from inspect import isfunction
 from agent import*
 
 
@@ -26,7 +24,6 @@ class FSM:
                 return
 
     def apply_rule(self, rule):
-        # Her maa vi legge til logikk for aa sjekke om regelen skal brukes
         if self.current_state == rule.state1:
             if rule.signal(self.current_signal):
                 return True
@@ -35,7 +32,6 @@ class FSM:
 
     def fire_rule(self, rule):
         self.current_state = rule.state2
-        # Her maa vi gjoere noe for aa kalle regelen sin handling
         rule.action(self.current_signal)
 
     def main_loop(self):
@@ -90,11 +86,11 @@ def signal_is_led_number(signal):
 if __name__ == "__main__":
     fsm = FSM()
     fsm.add_rule("Wakeup", 0, 1, signal_is_digit, fsm.agent.reset_pw_acc1)
-    fsm.add_rule("AppendDigit", 1, 1, signal_is_digit, fsm.agent.append_digit)
-    fsm.add_rule("GoToVerify", 1, 2, signal_is_asterisk, fsm.agent.verify_login)
-    fsm.add_rule("GoToStart", 1, 0, give_true, fsm.agent.reset_agent)
-    fsm.add_rule("Successverify", 2, 3, signal_is_Y, fsm.agent.fully_activate_agent)
-    fsm.add_rule("FailureVerify", 2, 0, signal_is_N, fsm.agent.reset_agent)
+    fsm.add_rule("Take password inputs", 1, 1, signal_is_digit, fsm.agent.append_digit)
+    fsm.add_rule("Verify password", 1, 2, signal_is_asterisk, fsm.agent.verify_login)
+    fsm.add_rule("Power down", 1, 0, give_true, fsm.agent.reset_agent)
+    fsm.add_rule("Password verification success", 2, 3, signal_is_Y, fsm.agent.fully_activate_agent)
+    fsm.add_rule("Password verification failure", 2, 0, signal_is_N, fsm.agent.reset_agent)
 
     fsm.add_rule("Select LED", 3, 4, signal_is_led_number, fsm.agent.select_led)
     fsm.add_rule("Choose duration", 4, 4, signal_is_digit, fsm.agent.append_duration)

@@ -79,7 +79,7 @@ class Agent:
     def append_digit_change_2(self, char):  # append digit to second passwordchange
         self.passcode_change2 += char
 
-    def verify_change_inputs(self, char):  # a10
+    def verify_change_inputs(self, char):  # verifies the two change-inputs, if they are the same, change the file
         if self.passcode_change1 == self.passcode_change2:
             self.led_board.twinkle_all_leds()
             file = open(self.passcode_location, 'w')
@@ -90,19 +90,19 @@ class Agent:
             self.led_board.flash_all_leds()
             self.reset_both_changers("")
 
-    def reset_both_changers(self, char):  # a11
+    def reset_both_changers(self, char):  # when cancelling passcode-change, this fires
         self.led_board.flash_all_leds()
         self.reset_change_1("")
         self.reset_change_2("")
 
-    def select_led(self, char):
+    def select_led(self, char):  # from input, select led from 1-6
         self.selected_led = int(char)-1
         print("Turning on LED.")
 
-    def append_duration(self, char):
+    def append_duration(self, char):  # from input, append (stringwise) the duration of led-light
         self.led_duration += char
 
-    def execute_led(self, char):
+    def execute_led(self, char):  # from previous settings, fire led.
         print("Turned on LED ", str(self.selected_led), " for ", str(self.led_duration), " seconds.")
         duration = int(self.led_duration)
 
@@ -113,22 +113,22 @@ class Agent:
         self.led_board.clear_leds()
         print("Turned off LED.")
 
-    def clear_duration(self, char):
+    def clear_duration(self, char):  # fired upon cancelling led-light.
         self.led_board.flash_all_leds()
         self.led_duration = ""
 
-    def logout(self, char):
+    def logout(self, char):  # logout by two pound signs
         self.led_board.power_off()
         print("Logout Succesful!")
 
-    def verify_logout(self, char):
+    def verify_logout(self, char):  # after first pound sign
         print("Are you sure you want to log out?")
 
-    def cancel_logout(self, char):
+    def cancel_logout(self, char):  # if no second pound sign
         print("Logout cancelled!")
 
 
-class AgentProxy(Agent):
+class AgentProxy(Agent):  # only used for debug
 
     def __init__(self):
         Agent.__init__(self)
