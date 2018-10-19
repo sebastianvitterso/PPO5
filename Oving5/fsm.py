@@ -26,7 +26,7 @@ class FSM:
                 return
 
     def apply_rule(self, rule):
-        # Her må vi legge til logikk for å sjekke om regelen skal brukes
+        # Her maa vi legge til logikk for aa sjekke om regelen skal brukes
         if self.current_state == rule.state1:
             if rule.signal(self.current_signal):
                 return True
@@ -35,7 +35,7 @@ class FSM:
 
     def fire_rule(self, rule):
         self.current_state = rule.state2
-        # Her må vi gjøre noe for å kalle regelen sin handling
+        # Her maa vi gjoere noe for å kalle regelen sin handling
         rule.action(self.current_signal)
 
     def main_loop(self):
