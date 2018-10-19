@@ -22,14 +22,15 @@ class Keypad:
                         ['*', '0', '#']]
 
     def get_signal(self):
-        for row in self.rowpins:
-            GPIO.output(row, GPIO.HIGH)
-
-            for col in self.colpins:
-                if self.poll_button(col):
+        for row in range(0,4):
+        #for row in self.rowpins:
+            GPIO.output(self.rowpins[row], GPIO.HIGH)
+            for col in range(0,3):
+            #for col in self.colpins:
+                if self.poll_button(self.colpins[col]):
                     return self.signals[row][col]
 
-            GPIO.output(row, GPIO.LOW)
+            GPIO.output(self.rowpins[row], GPIO.LOW)
 
         return None
 
