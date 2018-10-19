@@ -5,7 +5,7 @@ from agent import*
 
 class FSM:
     def __init__(self):
-        self.agent = AgentProxy()
+        self.agent = Agent()
         self.states = []
         self.current_state = 0
         self.current_signal = ""
