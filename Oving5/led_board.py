@@ -1,10 +1,11 @@
 import RPi.GPIO as GPIO
 import time
+import random
 
 
 class LED_Board:
     def __init__(self):
-        self.pins = [18, 23, 24]
+        self.pins = [19, 13, 6]
         self.pin_led_states = [
                 [1, 0, -1], # A
                 [0, 1, -1], # B
@@ -17,17 +18,27 @@ class LED_Board:
     def setup(self):
         GPIO.setmode(GPIO.BCM)
         for i in range(0, 6):
-            GPIO.setup(i, GPIO.OUT)
+            GPIO.setup(self.pins[i], GPIO.OUT)
 
     def light_led(self, light):
-        GPIO.ouput(light, GPIO.HIGH)
+        # Skru først av alle LEDs
+        for i in range(0, 3):
+            GPIO.output(self.pins[i], GPIO.LOW)
+
+        # Skru på den valgte LEDen
+        for i in self.pin_led_states[light]:
+            GPIO.ouput(i, GPIO.HIGH)
 
     def flash_all_leds(self, duration):
-        for i in range(0, 6):
-            self.light_led(i)
+        for i in range(0, 5):
+            for j in range(1, 100):
+                self.light_led(j % 6)
+            time.sleep(200)
     
     def twinkle_all_leds(self, duration):
-        return True
+        for i in range(0, 10):
+            self.light_led(random.randint(0, 6))
+            time.sleep(100)
 
     def power_off(self):
         return True
