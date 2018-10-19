@@ -1,3 +1,4 @@
+from led_board import *
 
 class Agent:
 
@@ -12,6 +13,7 @@ class Agent:
         self.override_signal = 0
         self.selected_led = 0
         self.led_duration = ""
+        self.led_board = LED_Board();
 
     def set_override(self, num):
         self.override_signal = num
@@ -57,7 +59,7 @@ class Agent:
         self.passcode_change2 = ""
 
     def fully_activate_agent(self, char):  # a5
-        # lysshow
+        self.led_board.power_on();
         print("Access Granted!")
 
     def reset_change_1(self, char):  # a6
@@ -95,12 +97,14 @@ class Agent:
         self.led_duration += char
 
     def execute_led(self, char):
-        pass
+        duration = int(self.duration);
+        self.led_board.light_led(self.selected_led);
 
     def clear_duration(self, char):
-        pass
+        self.led_duration = "";
 
-    def logout(self, char):
+    def logout(self, char):7
+        self.led_board.power_off();
         print("Logout Succesful!")
 
     def verify_logout(self, char):
