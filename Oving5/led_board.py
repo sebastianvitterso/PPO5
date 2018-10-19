@@ -30,6 +30,7 @@ class LED_Board:
     def clear_leds(self):
         # Skru foerst av alle LEDs
         for i in range(0, 3):
+            GPIO.setup(self.pins[i], GPIO.OUT)
             GPIO.output(self.pins[i], GPIO.LOW)
 
     def light_led(self, led_number):
