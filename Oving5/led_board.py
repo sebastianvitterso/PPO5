@@ -44,7 +44,7 @@ class LED_Board:
             #self.set_pin(i, light)
 
     def flash_all_leds(self):
-        for i in range(0, 5):
+        for i in range(0, 6):
             for j in range(1, 100):
                 self.light_led(j % 6)
             self.clear_leds()
@@ -52,7 +52,7 @@ class LED_Board:
     
     def twinkle_all_leds(self):
         for i in range(0, 10):
-            self.light_led(random.randint(0, 6))
+            self.light_led(random.randint(0, 5))
             time.sleep(.100)
 
     def power_off(self):
