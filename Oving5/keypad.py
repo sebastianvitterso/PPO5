@@ -32,7 +32,6 @@ class Keypad:
                     return self.signals[row][col]
 
             GPIO.output(self.rowpins[row], GPIO.LOW)
-
         return None
 
     def poll_button(self, col):
