@@ -94,7 +94,7 @@ class Agent:
         self.reset_change_2("")
 
     def select_led(self, char):
-        self.selected_led = int(char)
+        self.selected_led = int(char)+1
 
     def append_duration(self, char):
         self.led_duration += char
@@ -102,6 +102,8 @@ class Agent:
     def execute_led(self, char):
         duration = int(self.led_duration)
         self.led_board.light_led(self.selected_led)
+        time.sleep(duration)
+        self.led_board.clear_leds()
 
     def clear_duration(self, char):
         self.led_duration = ""
