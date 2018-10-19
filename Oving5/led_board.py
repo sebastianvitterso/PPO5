@@ -51,7 +51,7 @@ class LED_Board:
             time.sleep(.200)
     
     def twinkle_all_leds(self):
-        for i in range(0, 60):
+        for i in range(0, 20):
             self.light_led(random.randint(0, 5))
             time.sleep(.100)
         self.clear_leds()
@@ -60,7 +60,7 @@ class LED_Board:
         for i in range(6, 0, -1):
             for dur in range(0, 10000):
                 for j in range(0, i):
-                    self.light_led(i)
+                    self.light_led(j)
         self.clear_leds()
 
     def power_on(self):

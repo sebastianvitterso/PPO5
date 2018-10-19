@@ -91,7 +91,7 @@ class Agent:
             self.reset_both_changers("")
 
     def reset_both_changers(self, char):  # a11
-        # blinkelys
+        self.led_board.flash_all_leds()
         self.reset_change_1("")
         self.reset_change_2("")
 

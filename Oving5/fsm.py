@@ -104,8 +104,10 @@ if __name__ == "__main__":
     fsm.add_rule("Change password", 3, 5, signal_is_asterisk, fsm.agent.pass_function)
     fsm.add_rule("Append digits to new password", 5, 5, signal_is_digit, fsm.agent.append_digit_change_1)
     fsm.add_rule("Finish new password", 5, 6, signal_is_asterisk, fsm.agent.pass_function)
+    fsm.add_rule("Cancel password change in state 1", 5, 3, give_true, fsm.agent.reset_both_changers)
     fsm.add_rule("Enter password again", 6, 6, signal_is_digit, fsm.agent.append_digit_change_2)
     fsm.add_rule("Verify passwords match", 6, 3, signal_is_asterisk, fsm.agent.verify_change_inputs)
+    fsm.add_rule("Cancel password change in state 2", 6, 3, give_true, fsm.agent.reset_both_changers)
 
     fsm.add_rule("Verify Logout", 3, 7, signal_is_pound, fsm.agent.verify_logout)
     fsm.add_rule("Logout final", 7, 0, signal_is_pound, fsm.agent.logout)
