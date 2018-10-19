@@ -57,7 +57,7 @@ class LED_Board:
         self.clear_leds()
 
     def power_off(self):
-        for i in range(7, 1, -1):
+        for i in range(6, 1, -1):
             for dur in range(0, 10000):
                 for j in range(0, i):
                     self.light_led(i)
