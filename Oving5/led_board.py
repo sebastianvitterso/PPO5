@@ -32,21 +32,21 @@ class LED_Board:
         for i in self.pin_led_states[light]:
             GPIO.ouput(i, GPIO.HIGH)
 
-    def flash_all_leds(self, duration):
+    def flash_all_leds(self):
         for i in range(0, 5):
             for j in range(1, 100):
                 self.light_led(j % 6)
             self.clear_leds()
             time.sleep(.200)
     
-    def twinkle_all_leds(self, duration):
+    def twinkle_all_leds(self):
         for i in range(0, 10):
             self.light_led(random.randint(0, 6))
             time.sleep(.100)
 
     def power_off(self):
-        return True
+        self.flash_all_leds()
 
     def power_on(self):
-        return True
+        self.twinkle_all_leds()
 
