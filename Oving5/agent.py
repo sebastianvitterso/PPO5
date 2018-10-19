@@ -1,10 +1,9 @@
 from led_board import *
+from keypad import *
 
 class Agent:
 
-    def __init__(self, keypad, ledboard):
-        self.keypad = keypad
-        self.ledboard = ledboard
+    def __init__(self):
         self.passcode_location = "passcode.txt"
         # self.passcode_saved = "1234"
         self.passcode_login = ""
@@ -13,7 +12,8 @@ class Agent:
         self.override_signal = 0
         self.selected_led = 0
         self.led_duration = ""
-        self.led_board = LED_Board();
+        self.led_board = LED_Board()
+        self.key_pad = Keypad()
 
     def set_override(self, num):
         self.override_signal = num
@@ -21,8 +21,9 @@ class Agent:
     def get_next(self):  # maa kanskje modifiseres, om keypad kun gir tilbake col/row
         if self.override_signal == 0:
             while True:
-                if self.keypad.current_keypress is not None:
-                    return self.keypad.current_keypress
+                signal = self.key_pad.get_signal()
+                if signal is not None:
+                    return signal
         elif self.override_signal == 1:
             var = self.verify_login_2()
             self.override_signal = 0
@@ -59,7 +60,7 @@ class Agent:
         self.passcode_change2 = ""
 
     def fully_activate_agent(self, char):  # a5
-        self.led_board.power_on();
+        self.led_board.power_on()
         print("Access Granted!")
 
     def reset_change_1(self, char):  # a6
@@ -97,14 +98,14 @@ class Agent:
         self.led_duration += char
 
     def execute_led(self, char):
-        duration = int(self.duration);
-        self.led_board.light_led(self.selected_led);
+        duration = int(self.led_duration)
+        self.led_board.light_led(self.selected_led)
 
     def clear_duration(self, char):
-        self.led_duration = "";
+        self.led_duration = ""
 
     def logout(self, char):
-        self.led_board.power_off();
+        self.led_board.power_off()
         print("Logout Succesful!")
 
     def verify_logout(self, char):
@@ -117,7 +118,7 @@ class Agent:
 class AgentProxy(Agent):
 
     def __init__(self):
-        Agent.__init__(self, None, None)
+        Agent.__init__(self)
 
     def get_next(self):
         if self.override_signal == 0:
