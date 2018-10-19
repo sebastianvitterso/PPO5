@@ -28,6 +28,7 @@ class Keypad:
             for col in range(0,3):
             #for col in self.colpins:
                 if self.poll_button(self.colpins[col]):
+                    GPIO.output(self.rowpins[row], GPIO.LOW)
                     return self.signals[row][col]
 
             GPIO.output(self.rowpins[row], GPIO.LOW)
@@ -35,11 +36,9 @@ class Keypad:
         return None
 
     def poll_button(self, col):
-        for i in range(0, 15):
+        for i in range(0, 20):
             if GPIO.input(col) != GPIO.HIGH:
                 return False
-
-            time.sleep(5)
-
+            time.sleep(.010)
         return True
 
