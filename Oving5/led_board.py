@@ -20,11 +20,14 @@ class LED_Board:
         for i in range(0, 6):
             GPIO.setup(self.pins[i], GPIO.OUT)
 
-    def light_led(self, light):
+    def clear_leds(self):
         # Skru foerst av alle LEDs
         for i in range(0, 3):
             GPIO.output(self.pins[i], GPIO.LOW)
 
+
+    def light_led(self, light):
+        self.clear_leds()
         # Skru paa den valgte LEDen
         for i in self.pin_led_states[light]:
             GPIO.ouput(i, GPIO.HIGH)
@@ -33,6 +36,7 @@ class LED_Board:
         for i in range(0, 5):
             for j in range(1, 100):
                 self.light_led(j % 6)
+            self.clear_leds()
             time.sleep(.200)
     
     def twinkle_all_leds(self, duration):
