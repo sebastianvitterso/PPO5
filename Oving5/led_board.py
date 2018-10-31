@@ -38,7 +38,7 @@ class LED_Board:
             GPIO.setup(self.pins[i], GPIO.OUT)
             GPIO.output(self.pins[i], GPIO.LOW)
 
-    # Skru på en LED
+    # Skru paa en LED
     def light_led(self, led_number):
         for pin_index, pin_state in enumerate(self.pin_led_states[led_number]):
             self.set_pin(pin_index, pin_state)
@@ -58,7 +58,7 @@ class LED_Board:
             time.sleep(.100)
         self.clear_leds()
 
-    # lysshow når man skrur av 
+    # lysshow naar man skrur av
     def power_off(self):
         for i in range(6, 0, -1):
             for dur in range(0, 10000):
@@ -66,7 +66,7 @@ class LED_Board:
                     self.light_led(j)
         self.clear_leds()
 
-    # lysshow når man skrur på 
+    # lysshow naar man skrur paa
     def power_on(self):
         for i in range(1, 7):
             for j in range(0, 10000):
