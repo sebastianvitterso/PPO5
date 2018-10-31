@@ -2,7 +2,7 @@ from arbitrator import *
 class BBCON:
     def __init__(self):
         self.behaviors = []
-        self.active-behaviors = []
+        self.active_behaviors = []
         self.sensobs = []
         self.motobs = []
         self.arbitrator = Arbitrator
