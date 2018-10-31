@@ -17,3 +17,7 @@ class Sensob:
 
         for sensor in self.sensors:
             self.sensor_value.append(sensor.get_value())
+
+    def reset(self):
+        for sensor in self.sensors:
+            sensor.reset()
