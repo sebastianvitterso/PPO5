@@ -31,4 +31,3 @@ class BBCON:
         - Wait
         - Reset sensobs
         '''
-        pass
