@@ -13,7 +13,7 @@ class Sensob:
     def update(self):
         self.sensor_value = []
             sensor.update()
-            self.sensor_value.append(sensor.get_value())
+            self.sensor_value.append(self.sensor.get_value())
 
     def reset(self):
         for sensor in self.sensors:
