@@ -56,7 +56,7 @@ class BBCON:
         for behavior in self.behaviors:
             behavior.update()
 
-        motorRecc = self.arbitrator.choose_action_deterministic()
+        motorRecc = self.arbitrator.choose_action_stochastic_linear()
 
         for motob in self.motobs:
             motob.update(motorRecc)
