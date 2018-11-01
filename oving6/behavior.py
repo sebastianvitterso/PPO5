@@ -34,6 +34,11 @@ class Behavior:
         pass
 
 
+class NoneBehavior(Behavior):
+    def __init__(self, bbcon, sensobs, halt_request, priority):
+        Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
+
+
 class ForwardBehavior(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
