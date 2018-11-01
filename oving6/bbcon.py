@@ -28,7 +28,7 @@ class BBCON:
         forwardb = ForwardBehavior(self, [], False, 0.2)
         self.add_behavior(forwardb)
         self.activate_behavior(forwardb)
-        avoidb = AvoidCollisionBehavior(self, usob, False, 1)
+        avoidb = AvoidCollisionBehavior(self, [usob], False, 1)
         self.add_behavior(avoidb)
         self.activate_behavior(avoidb)
         m = Motob()
@@ -56,7 +56,7 @@ class BBCON:
         for behavior in self.behaviors:
             behavior.update()
 
-        motorRecc = self.arbitrator.choose_action_stochastic_linear()
+        motorRecc = self.arbitrator.choose_action_deterministic()
 
         for motob in self.motobs:
             motob.update(motorRecc)
@@ -73,6 +73,9 @@ class BBCON:
         - Wait
         - Reset sensobs
         '''
+
+    def stop(self):
+        self.motobs[0].motors.stop()
 
 
 if __name__ == "__main__":

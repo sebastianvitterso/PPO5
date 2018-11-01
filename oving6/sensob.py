@@ -39,7 +39,9 @@ class UltrasonicSensob(Sensob):
         Sensob.__init__(self, sensor)
 
 
-
+    def update(self):
+        Sensob.update(self)
+        print("Ultrasonic Sensor: \n", self.sensor_value)
 
 
 
