@@ -28,6 +28,8 @@ class BBCON:
         forwardb = ForwardBehavior(self, [], False, 1)
         self.add_behavior(forwardb)
         self.activate_behavior(forwardb)
+        m = Motob()
+        self.motobs.append(m)
 
 
     def add_behavior(self, behavior):
