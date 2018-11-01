@@ -28,20 +28,20 @@ class BBCON:
             self.active_behaviors.remove(behavior)
 
     def run_one_timestep(self):
-        for sensob in sensobs:
+        for sensob in self.sensobs:
             sensob.update()
 
-        for behavior in behaviors:
+        for behavior in self.behaviors:
             behavior.update()
 
         self.arbitrator.choose_action_deterministic()
 
-        for motob in motobs:
+        for motob in self.motobs:
             motob.update()
 
         time.sleep(.05)
 
-        for sensob in sensobs:
+        for sensob in self.sensobs:
             sensob.reset()
         '''
         - Update all relevant sensobs
