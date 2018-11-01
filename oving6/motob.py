@@ -9,6 +9,7 @@ class Motob:
     # (F/B, [0, 1])  - Forward/backward, speed 0-1
     # (L/R, [0, 180]) - Left/right, 0-180 degrees
     def update(self, motor_recommendation):
+        print(motor_recommendation)
         if motor_recommendation[0] == 'F':
             self.value = (motor_recommendation[1], motor_recommendation[1])
         elif motor_recommendation[0] == 'B':
