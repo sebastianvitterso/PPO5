@@ -19,8 +19,11 @@ class Behavior:
 
     # Hovedgrensesnitt mellom bbcon og behaviour
     def update(self):
-        # Oppdater activity status her
-
+        if self.active_flag:
+            self.consider_deactivation()
+        else:
+            self.consider_activation()
+        
         self.sense_and_act()
 
         self.weight = self.match_degree * self.priority
