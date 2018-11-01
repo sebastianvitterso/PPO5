@@ -47,7 +47,7 @@ class GreenDirectionSensob(Sensob):
     def __init__(self, sensor):
         Sensob.__init__(self, sensor)
         self.direction = 0
-        self.imager = imager.Imager()
+        self.imager = imager2.Imager()
 
     def update(self):
        self.sensor_value = self.sensor.update()
