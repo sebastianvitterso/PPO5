@@ -2,7 +2,6 @@ from motors import Motors
 class Motob:
     def __init__(self):
         self.motors = Motors()
-        self.motors.setup()
         self.value = None
 
     

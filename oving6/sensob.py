@@ -6,16 +6,13 @@ import zumo_button
 
 
 class Sensob:
-    def __init__(self):
-        self.sensors = []
+    def __init__(self, sensor):
+        self.sensor = sensor
         self.sensor_value = []
 
     def update(self):
         self.sensor_value = []
-        for sensor in self.sensors:
             sensor.update()
-
-        for sensor in self.sensors:
             self.sensor_value.append(sensor.get_value())
 
     def reset(self):

@@ -1,8 +1,9 @@
-from arbitrator import *
+from arbitrator import Arbitrator
 import time
-from behavior import *
-from motob import *
-from sensob import *
+from behavior import Behavior
+from motob import Motob
+from sensob import Sensob
+from reflectance_sensors import ReflectanceSensors
 
 class BBCON:
     def __init__(self):
@@ -11,6 +12,12 @@ class BBCON:
         self.sensobs = []
         self.motobs = []
         self.arbitrator = Arbitrator(self)
+        self.setup()
+
+    def setup(self):
+        m = motob()
+        ps = sensob()
+        ir = sensob()
 
 
     def add_behavior(self, behavior):
@@ -52,5 +59,6 @@ class BBCON:
         - Reset sensobs
         '''
 
+
 if __name__ == "__main__":
-    pass
+    b = BBCON()
