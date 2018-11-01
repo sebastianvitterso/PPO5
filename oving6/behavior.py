@@ -117,21 +117,15 @@ class FollowGreenFlask(Behavior):
     
     def sense_and_act(self):
         direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe grønt
-
-        if direction == 3:
-            self.motor_recommendations = ('F', 1)
-        elif direction == 2:
-            self.motor_recommendations = ('L', 45)
-        elif direction == 1:
-            self.motor_recommendations = ('L', 90)
-        elif direction == 4:
-            self.motor_recommendations = ('R', 45)
-        elif direction == 5:
-            self.motor_recommendations = ('R', 90)
-        else:
-            self.motor_recommendations = ('R', 180)
         
         if direction > 0:
+            if direction < 4:
+                self.motor_recommendations = ('L'. 90)
+            elif direction > 5:
+                self.motor_recommendations = ('R', 90)
+            else:
+                self.motor_recommendations = ('F', 1)
+
             self.match_degree = 0.5
         else:
             self.match_degree = 0.7
