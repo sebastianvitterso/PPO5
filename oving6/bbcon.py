@@ -55,7 +55,7 @@ class BBCON:
         for motob in self.motobs:
             motob.update()
 
-        time.sleep(.05)
+        time.sleep(.5)
 
         for sensob in self.sensobs:
             sensob.reset()
@@ -71,3 +71,6 @@ class BBCON:
 
 if __name__ == "__main__":
     b = BBCON()
+    time.sleep(2)
+    while True:
+        b.run_one_timestep()
