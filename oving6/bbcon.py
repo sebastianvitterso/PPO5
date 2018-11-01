@@ -7,12 +7,13 @@ from reflectance_sensors import ReflectanceSensors
 from irproximity_sensor import IRProximitySensor
 from ultrasonic import Ultrasonic
 
+
 class BBCON:
     def __init__(self):
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
-        self.motobs = []
+        self.motob = Motob()
         self.arbitrator = Arbitrator(self)
         self.setup()
 
@@ -34,9 +35,6 @@ class BBCON:
         lineb = FollowLineBehavior(self, [rs], False, 0.9)
         self.add_behavior(lineb)
         self.activate_behavior(lineb)
-        m = Motob()
-        self.motobs.append(m)
-
 
     def add_behavior(self, behavior):
         self.behaviors.append(behavior)
@@ -61,8 +59,7 @@ class BBCON:
 
         motorRecc = self.arbitrator.choose_action_deterministic()
 
-        for motob in self.motobs:
-            motob.update(motorRecc)
+        self.motob.update(motorRecc)
 
         time.sleep(.1)
 
@@ -78,7 +75,7 @@ class BBCON:
         '''
 
     def stop(self):
-        self.motobs[0].motors.stop()
+        self.motob.motors.stop()
 
 
 if __name__ == "__main__":
