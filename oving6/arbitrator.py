@@ -28,7 +28,7 @@ class Arbitrator:
         for behavior in self.bbcon.active_behaviors:
             num += behavior.weight
             if num >= random_choice:
-                temptuple = (behavior.motor_recommendations, behavior.halt_request)
+                temptuple = behavior.motor_recommendations
                 return temptuple
         # if we get here, something is wrong.
         temptuple = (None, None)
