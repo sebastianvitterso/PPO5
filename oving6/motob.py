@@ -12,11 +12,11 @@ class Motob:
     def update(self, motor_recommendation):
         if motor_recommendation[0] == 'F':
             self.value = (motor_recommendation[1], motor_recommendation[1])
-        else if motor_recommendation[0] == 'B':
-            self.value = (-motor_recommentaion[1], -motor_recommendation[1])
-        else if motor_recommendation[0] == 'R':
+        elif motor_recommendation[0] == 'B':
+            self.value = (-motor_recommendation[1], -motor_recommendation[1])
+        elif motor_recommendation[0] == 'R':
             self.value = (0.5, 0)
-        else if motor_recommendation[0] == 'L':
+        elif motor_recommendation[0] == 'L':
             self.value = (0, 0.5)
 
         self.operationalize()
