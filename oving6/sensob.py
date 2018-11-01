@@ -18,3 +18,29 @@ class Sensob:
     def reset(self):
         self.sensor.reset()
         self.sensor_value = []
+
+
+class ReflectanceSensob(Sensob):
+    def __init__(self, sensor):
+        Sensob.__init__(self, sensor)
+
+    def update(self):
+        Sensob.update(self)
+        print("Reflectance Sensor: \n", self.sensor_value)
+
+
+class IRProximitySensob(Sensob):
+    def __init__(self, sensor):
+        Sensob.__init__(self, sensor)
+
+
+class UltrasonicSensob(Sensob):
+    def __init__(self, sensor):
+        Sensob.__init__(self, sensor)
+
+
+
+
+
+
+
