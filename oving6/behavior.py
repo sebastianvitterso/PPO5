@@ -85,13 +85,14 @@ class AvoidCollisionBehavior(Behavior):
         pass
 
     def sense_and_act(self):
-        if self.sensobs[0].sensor_value[0] < 25:
+        if self.sensobs[0].sensor_value[0] < 10:
             self.match_degree = 1
-        elif self.sensobs[0].sensor_value[0] < 50:
+        elif self.sensobs[0].sensor_value[0] < 25:
             self.match_degree = 0.7
         else:
             self.match_degree = 0
         self.motor_recommendations = ('L', 30)
+
 
 class FollowLineBehavior(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
@@ -111,6 +112,7 @@ class FollowLineBehavior(Behavior):
             self.match_degree = 1
             self.motor_recommendations = ('R', 45)
 
+
 class FollowGreenFlask(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
@@ -120,7 +122,7 @@ class FollowGreenFlask(Behavior):
         
         if direction > 0:
             if direction < 4:
-                self.motor_recommendations = ('L'. 90)
+                self.motor_recommendations = ('L', 90)
             elif direction > 5:
                 self.motor_recommendations = ('R', 90)
             else:
