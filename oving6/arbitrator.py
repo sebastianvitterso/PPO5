@@ -13,7 +13,7 @@ class Arbitrator:
             if behavior.weight > chosen_behavior.weight:
                 chosen_behavior = behavior
         temptuple = chosen_behavior.motor_recommendations
-        print(temptuple)
+        print("temptup: ", temptuple)
         return temptuple
 
     def choose_action_stochastic_linear(self) -> tuple:
