@@ -21,3 +21,4 @@ class Sensob:
     def reset(self):
         for sensor in self.sensors:
             sensor.reset()
+        self.sensor_value = []
