@@ -38,18 +38,20 @@ class ForwardBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
 
     def consider_deactivation(self):
-        if (putTest):  # hva er testen?
+        '''if (putTest):  # hva er testen?
             self.bbcon.deactivate_behavior(self)
             self.active_flag = False
         else:
-            pass
+            pass'''
+        pass
 
     def consider_activation(self):
-        if (putTest):  # hva er testen?
+        '''if (putTest):  # hva er testen?
             self.bbcon.activate_behavior(self)
             self.active_flag = True
         else:
-            pass
+            pass'''
+        pass
 
     def sense_and_act(self):  # ForwardBehavior er veldig dum, så bruker ikke sanseinput
         self.motor_recommendations = ('F', 1)
@@ -61,18 +63,20 @@ class AvoidCollisionBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
 
     def consider_deactivation(self):
-        if (putTest):  # hva er testen?
+        '''if (putTest):  # hva er testen?
             self.bbcon.deactivate_behavior(self)
             self.active_flag = False
         else:
-            pass
+            pass'''
+        pass
 
     def consider_activation(self):
-        if (putTest):  # hva er testen?
+        '''if (putTest):  # hva er testen?
             self.bbcon.activate_behavior(self)
             self.active_flag = True
         else:
-            pass
+            pass'''
+        pass
 
     def sense_and_act(self):
         if self.sensobs[0].sensor_value[0] < 25:
