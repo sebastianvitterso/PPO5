@@ -1,7 +1,9 @@
 from arbitrator import *
+import time
 from behavior import *
 from motob import *
 from sensob import *
+
 class BBCON:
     def __init__(self):
         self.behaviors = []
@@ -26,6 +28,21 @@ class BBCON:
             self.active_behaviors.remove(behavior)
 
     def run_one_timestep(self):
+        for sensob in sensobs:
+            sensob.update()
+
+        for behavior in behaviors:
+            behavior.update()
+
+        self.arbitrator.choose_action_deterministic()
+
+        for motob in motobs:
+            motob.update()
+
+        time.sleep(.05)
+
+        for sensob in sensobs:
+            sensob.reset()
         '''
         - Update all relevant sensobs
         - Update all behaviors
@@ -34,8 +51,6 @@ class BBCON:
         - Wait
         - Reset sensobs
         '''
-
-
 
 if __name__ == "__main__":
     pass
