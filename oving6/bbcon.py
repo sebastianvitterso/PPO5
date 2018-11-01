@@ -25,9 +25,12 @@ class BBCON:
         usob = UltrasonicSensob(us)
         self.add_sensob(rsob)
         self.add_sensob(usob)
-        forwardb = ForwardBehavior(self, [], False, 1)
+        forwardb = ForwardBehavior(self, [], False, 0.2)
         self.add_behavior(forwardb)
         self.activate_behavior(forwardb)
+        avoidb = AvoidCollisionBehavior(self, usob, False, 1)
+        self.add_behavior(avoidb)
+        self.activate_behavior(avoidb)
         m = Motob()
         self.motobs.append(m)
 
