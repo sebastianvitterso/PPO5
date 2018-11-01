@@ -1,9 +1,11 @@
 from arbitrator import Arbitrator
 import time
-from behavior import Behavior
+from behavior import *
 from motob import Motob
-from sensob import Sensob
+from sensob import *
 from reflectance_sensors import ReflectanceSensors
+from irproximity_sensor import IRProximitySensor
+from ultrasonic import Ultrasonic
 
 class BBCON:
     def __init__(self):
@@ -15,9 +17,16 @@ class BBCON:
         self.setup()
 
     def setup(self):
-        m = motob()
-        ps = sensob()
-        ir = sensob()
+        rs = ReflectanceSensors()
+        #ir = IRProximitySensor()
+        us = Ultrasonic()
+        rsob = ReflectanceSensob(rs)
+        #irob = IRProximitySensob()
+        usob = UltrasonicSensob(us)
+        self.add_sensob(rsob)
+        self.add_sensob(usob)
+        forwardb = ForwardBehavior()
+        self.add_behavior(forwardb)
 
 
     def add_behavior(self, behavior):
