@@ -2,7 +2,7 @@ class Behavior:
     def __init__(self, bbcon, sensobs, halt_request, priority):
         self.bbcon = bbcon
         self.sensobs = sensobs
-        self.motor_recommendations = []
+        self.motor_recommendations = None
         self.active_flag = False
         self.halt_request = halt_request
         self.priority = priority
@@ -28,4 +28,33 @@ class Behavior:
     # Gjør beregninger for å produsere motoranbefalinger og oppdatere match_degree
     def sense_and_act(self):
         pass
+
+
+class ForwardBehavior(Behavior):
+    def __init__(self, bbcon, sensobs, halt_request, priority):
+        Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
+
+    def consider_deactivation(self):
+        if (putTest):  # hva er testen?
+            self.bbcon.deactivate_behavior(self)
+            self.active_flag = False
+        else:
+            pass
+
+    def consider_activation(self):
+        if (putTest):  # hva er testen?
+            self.bbcon.activate_behavior(self)
+            self.active_flag = True
+        else:
+            pass
+
+    def sense_and_act(self):  # ForwardBehavior er veldig dum, så bruker ikke sanseinput
+        self.motor_recommendations = ('F', 1)
+
+
+class AvoidCollisionBehavior(Behavior):
+    def __init__(self, bbcon, sensobs, halt_request, priority):
+        Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
+
+
 
