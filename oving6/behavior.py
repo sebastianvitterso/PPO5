@@ -123,7 +123,7 @@ class FollowGreenFlask(Behavior):
             self.motor_recommendations = ('R', 45)
         elif direction == 5:
             self.motor_recommendations = ('R', 90)
-        else
+        else:
             self.motor_recommendations = ('R', 180)
         
         if direction > 0:

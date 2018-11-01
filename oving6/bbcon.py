@@ -27,6 +27,7 @@ class BBCON:
         self.add_sensob(usob)
         forwardb = ForwardBehavior(self, [], False, 1)
         self.add_behavior(forwardb)
+        self.activate_behavior(forwardb)
 
 
     def add_behavior(self, behavior):
