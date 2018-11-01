@@ -64,7 +64,7 @@ class BBCON:
         for motob in self.motobs:
             motob.update(motorRecc)
 
-        time.sleep(.5)
+        time.sleep(.1)
 
         for sensob in self.sensobs:
             sensob.reset()

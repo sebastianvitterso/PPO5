@@ -93,6 +93,7 @@ class AvoidCollisionBehavior(Behavior):
             self.match_degree = 0
         self.motor_recommendations = ('L', 30)
 
+
 class FollowLineBehavior(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
@@ -110,6 +111,7 @@ class FollowLineBehavior(Behavior):
         elif self.sensobs[0][5] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('R', 45)
+
 
 class FollowGreenFlask(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
