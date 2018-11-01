@@ -1,3 +1,4 @@
+
 class Behavior:
     def __init__(self, bbcon, sensobs, halt_request, priority):
         self.bbcon = bbcon
@@ -104,3 +105,29 @@ class FollowLineBehavior(Behavior):
         elif self.sensobs[0][5] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('R', 45)
+
+class FollowGreenFlask(Behavior):
+    def __init__(self, bbcon, sensobs, halt_request, priority):
+        Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
+    
+    def sense_and_act(self):
+        direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe grønt
+
+        if direction == 3:
+            self.motor_recommendations = ('F', 1)
+        elif direction == 2:
+            self.motor_recommendations = ('L', 45)
+        elif direction == 1:
+            self.motor_recommendations = ('L', 90)
+        elif direction == 4:
+            self.motor_recommendations = ('R', 45)
+        elif direction == 5:
+            self.motor_recommendations = ('R', 90)
+        else
+            self.motor_recommendations = ('R', 180)
+        
+        if direction > 0:
+            self.match_degree = 0.5
+        else:
+            self.match_degree = 0.7
+
