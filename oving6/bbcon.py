@@ -1,5 +1,8 @@
 from arbitrator import *
 import time
+from behavior import *
+from motob import *
+from sensob import *
 
 class BBCON:
     def __init__(self):
@@ -48,3 +51,11 @@ class BBCON:
         - Wait
         - Reset sensobs
         '''
+<<<<<<< HEAD
+=======
+
+
+
+if __name__ == "__main__":
+    pass
+>>>>>>> 8ecdb578d2ba5e5b4ca93353e32c31a2226fd6df
