@@ -97,18 +97,18 @@ class AvoidCollisionBehavior(Behavior):
 class FollowLineBehavior(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
-        self.threshold = 500
+        self.threshold = 0.5
 
     def sense_and_act(self):
-        if self.sensobs[0][0] < self.threshold and self.sensobs[0][5] < self.threshold:
+        if self.sensobs[0].sensor_value[0] < self.threshold and self.sensobs[0].sensor_value[5] < self.threshold:
             # svart på begge sider
             self.match_degree = 0.5
             self.motor_recommendations = ('F', 1)
             print("heyah")
-        elif self.sensobs[0][0] < self.threshold:
+        elif self.sensobs[0].sensor_value[0] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('L', 45)
-        elif self.sensobs[0][5] < self.threshold:
+        elif self.sensobs[0].sensor_value[5] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('R', 45)
 

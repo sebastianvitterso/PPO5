@@ -12,9 +12,8 @@ class Sensob:
         self.sensor_value = []
 
     def update(self):
-        self.sensor_value = []
         self.sensor.update()
-        self.sensor_value.append(self.sensor.get_value())
+        self.sensor_value = self.sensor.get_value()
 
     def reset(self):
         self.sensor.reset()
@@ -42,6 +41,7 @@ class UltrasonicSensob(Sensob):
     def update(self):
         Sensob.update(self)
         print("Ultrasonic Sensor: \n", self.sensor_value)
+
 
 class GreenDirectionSensob(Sensob):
     def __init__(self, sensor):
