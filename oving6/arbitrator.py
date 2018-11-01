@@ -5,14 +5,14 @@ import behavior
 class Arbitrator:
     def __init__(self, bbcon):
         self.bbcon = bbcon
-        self.none_behavior = behavior.NoneBehavior(bbcon, [], False, 0)
+        self.none_behavior = behavior.NoneBehavior(bbcon, [], False, -1)
 
     def choose_action_deterministic(self) -> tuple:  # non-stochastic
         chosen_behavior = self.none_behavior
         for behavior in self.bbcon.active_behaviors:
             if behavior.weight > chosen_behavior.weight:
                 chosen_behavior = behavior
-        temptuple = (chosen_behavior.motor_recommendations, chosen_behavior.halt_request)
+        temptuple = chosen_behavior.motor_recommendations
         return temptuple
 
     def choose_action_stochastic_linear(self) -> tuple:

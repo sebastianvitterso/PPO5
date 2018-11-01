@@ -51,10 +51,10 @@ class BBCON:
         for behavior in self.behaviors:
             behavior.update()
 
-        self.arbitrator.choose_action_deterministic()
+        motorRecc = self.arbitrator.choose_action_deterministic()
 
         for motob in self.motobs:
-            motob.update()
+            motob.update(motorRecc)
 
         time.sleep(.5)
 
