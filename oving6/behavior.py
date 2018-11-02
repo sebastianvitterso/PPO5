@@ -102,22 +102,31 @@ class FollowLineBehavior(Behavior):
         self.threshold = 0.2
 
     def sense_and_act(self):
-        if self.sensobs[0].sensor_value[0] < self.threshold and self.sensobs[0].sensor_value[5] < self.threshold:
+        sensor_val = self.sensobs[0].sensor_value
+        if sensor_val[0] < self.threshold and sensor_val[5] < self.threshold:
             # svart på begge sider
             self.match_degree = 0.5
             direction = random.choice(['R', 'L'])
-            self.motor_recommendations = (direction, 45)
+            self.motor_recommendations = (direction, 2)
             print("heyah")
-        elif self.sensobs[0].sensor_value[0] < self.threshold:
+        elif sensor_val[0] < self.threshold:
             self.match_degree = 1
-            self.motor_recommendations = ('L', 45)
-        elif self.sensobs[0].sensor_value[5] < self.threshold:
+            self.motor_recommendations = ('L', 2)
+        elif sensor_val[5] < self.threshold:
             self.match_degree = 1
-            self.motor_recommendations = ('R', 45)
+            self.motor_recommendations = ('R', 2)
+        elif sensor_val[2] < self.threshold and sensor_val[3] < self.threshold:
+            self.motor_recommendations = ('F', 0.7)
+            self.match_degree = 1
+        elif sensor_val[2] < self.threshold:
+            self.motor_recommendations = ('L', 1)
+            self.match_degree = 1
+        elif sensor_val[3] < self.threshold:
+            self.motor_recommendations = ('R', 1)
+            self.match_degree = 1
         else:
-            self.motor_recommendations = ('F', 0.3)
+            self.motor_recommendations = ('F', 0.7)
             self.match_degree = 0.2
-
 
 class FollowGreenFlask(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
