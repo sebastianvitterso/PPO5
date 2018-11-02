@@ -23,4 +23,7 @@ class Motob:
 
     def operationalize(self):
         self.motors.set_value(self.value)
+
+    def stop(self):
+        self.motors.stop()
              
