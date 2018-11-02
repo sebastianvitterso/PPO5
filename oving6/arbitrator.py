@@ -14,6 +14,7 @@ class Arbitrator:
                 chosen_behavior = behavior
         temptuple = chosen_behavior.motor_recommendations
         print("temptup: ", temptuple)
+        print("Chosen behavior: ", chosen_behavior)
         return temptuple
 
     def choose_action_stochastic_linear(self) -> tuple:
