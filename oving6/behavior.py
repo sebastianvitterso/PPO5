@@ -114,7 +114,7 @@ class FollowLineBehavior(Behavior):
             self.match_degree = 1
             self.motor_recommendations = ('R', 45)
         else:
-            self.motor_recommendations = ('F', 1)
+            self.motor_recommendations = ('F', 0.25)
             self.match_degree = 0.2
 
 
@@ -131,7 +131,7 @@ class FollowGreenFlask(Behavior):
             elif direction > 5:
                 self.motor_recommendations = ('R', 90)
             else:
-                self.motor_recommendations = ('F', 1)
+                self.motor_recommendations = ('F', 0.25)
 
             self.match_degree = 0.5
         else:
