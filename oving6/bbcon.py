@@ -32,7 +32,7 @@ class BBCON:
         avoidb = AvoidCollisionBehavior(self, [usob], False, 0.8)
         self.add_behavior(avoidb)
         self.activate_behavior(avoidb)
-        lineb = FollowLineBehavior(self, [rs], False, 0.9)
+        lineb = FollowLineBehavior(self, [rsob], False, 0.9)
         self.add_behavior(lineb)
         self.activate_behavior(lineb)
 

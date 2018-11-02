@@ -104,7 +104,7 @@ class FollowLineBehavior(Behavior):
         if self.sensobs[0].sensor_value[0] < self.threshold and self.sensobs[0].sensor_value[5] < self.threshold:
             # svart på begge sider
             self.match_degree = 0.5
-            direction = random.coice(['R', 'L']);
+            direction = random.choice(['R', 'L'])
             self.motor_recommendations = (direction, 45)
             print("heyah")
         elif self.sensobs[0].sensor_value[0] < self.threshold:
@@ -115,7 +115,7 @@ class FollowLineBehavior(Behavior):
             self.motor_recommendations = ('R', 45)
         else:
             self.motor_recommendations = ('F', 1)
-            self.match_degree
+            self.match_degree = 0.2
 
 
 class FollowGreenFlask(Behavior):
