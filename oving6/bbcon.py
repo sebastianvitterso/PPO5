@@ -18,23 +18,30 @@ class BBCON:
         self.setup()
 
     def setup(self):
-        rs = ReflectanceSensors()
-        # ir = IRProximitySensor()
-        us = Ultrasonic()
-        rsob = ReflectanceSensob(rs)
-        # irob = IRProximitySensob()
-        usob = UltrasonicSensob(us)
-        self.add_sensob(rsob)
-        self.add_sensob(usob)
+        #Forward Behavior
         forwardb = ForwardBehavior(self, [], False, 0.2)
         self.add_behavior(forwardb)
         self.activate_behavior(forwardb)
-        avoidb = AvoidCollisionBehavior(self, [usob], False, 0.8)
-        self.add_behavior(avoidb)
-        self.activate_behavior(avoidb)
+
+        #LineBehavior
+        rs = ReflectanceSensors()
+        rsob = ReflectanceSensob(rs)
         lineb = FollowLineBehavior(self, [rsob], False, 0.9)
         self.add_behavior(lineb)
         self.activate_behavior(lineb)
+        self.add_sensob(rsob)
+
+        #Avoid Collision
+        #us = Ultrasonic()
+        #usob = UltrasonicSensob(us)
+        #self.add_sensob(usob)
+        #avoidb = AvoidCollisionBehavior(self, [usob], False, 0.8)
+        #self.add_behavior(avoidb)
+        #self.activate_behavior(avoidb)
+
+        #ir = IRProximitySensor()
+        #irob = IRProximitySensob()
+
 
     def add_behavior(self, behavior):
         self.behaviors.append(behavior)
