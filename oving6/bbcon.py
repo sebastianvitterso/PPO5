@@ -57,9 +57,9 @@ class BBCON:
         for behavior in self.behaviors:
             behavior.update()
 
-        motor_recc = self.arbitrator.choose_action_deterministic()
+        motor_recommendation = self.arbitrator.choose_action_deterministic()
 
-        self.motob.update(motor_recc)
+        self.motob.update(motor_recommendation)
 
         time.sleep(.1)
 
@@ -75,7 +75,7 @@ class BBCON:
         '''
 
     def stop(self):
-        self.motob.motors.stop()
+        self.motob.stop()
 
 
 if __name__ == "__main__":
