@@ -16,9 +16,15 @@ class Motob:
         elif motor_recommendation[0] == 'B':
             self.value = (-motor_recommendation[1], -motor_recommendation[1])
         elif motor_recommendation[0] == 'R':
-            self.value = (0.3, 0)
+            if motor_recommendation[1] == 1:
+                self.value = (0.25, -0.27)
+            elif motor_recommendation[1] == 2:
+                self.value = (0.4, -0.41)
         elif motor_recommendation[0] == 'L':
-            self.value = (0, 0.3)
+            if motor_recommendation[1] == 1:
+                self.value = (-0.25, 0.27)
+            elif motor_recommendation[1] == 2:
+                self.value = (-0.4, 0.41)
 
         self.operationalize()
 
