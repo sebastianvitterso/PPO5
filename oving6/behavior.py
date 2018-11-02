@@ -88,8 +88,6 @@ class AvoidCollisionBehavior(Behavior):
     def sense_and_act(self):
         if self.sensobs[0].sensor_value < 10:
             self.match_degree = 1
-        elif self.sensobs[0].sensor_value < 25:
-            self.match_degree = 0.7
         else:
             self.match_degree = 0
         self.motor_recommendations = ('L', 30)
