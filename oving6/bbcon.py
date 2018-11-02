@@ -6,6 +6,7 @@ from sensob import *
 from reflectance_sensors import ReflectanceSensors
 from irproximity_sensor import IRProximitySensor
 from ultrasonic import Ultrasonic
+from camera import Camera
 
 
 class BBCON:
@@ -24,6 +25,7 @@ class BBCON:
         rsob = ReflectanceSensob(rs)
         # irob = IRProximitySensob()
         # usob = UltrasonicSensob(us)
+        camera = Camera()
         self.add_sensob(rsob)
         # self.add_sensob(usob)
         forwardb = ForwardBehavior(self, [], False, 0.2)
@@ -33,6 +35,7 @@ class BBCON:
         # self.add_behavior(avoidb)
         # self.activate_behavior(avoidb)
         lineb = FollowLineBehavior(self, [rsob], False, 0.9)
+        followgreenb = FollowGreenFlask(self, [camera], False, 0.9)
         self.add_behavior(lineb)
         self.activate_behavior(lineb)
 

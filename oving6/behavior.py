@@ -11,6 +11,9 @@ class Behavior:
         self.match_degree = 0
         self.weight = 0
 
+    def __str__(self):
+        return type(self).__name__
+
     # Dersom en oppførsel er aktiv, skal den vurdere om den skal deaktivere seg selv
     def consider_deactivation(self):
         pass
