@@ -7,7 +7,7 @@ import time
 class Ultrasonic():
 
     def __init__(self):
-        self.value = None
+        self.value = 100
         self.trig_pin = 26
         self.echo_pin = 11
         self.setup()
