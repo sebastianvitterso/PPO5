@@ -61,7 +61,7 @@ class ForwardBehavior(Behavior):
         pass
 
     def sense_and_act(self):  # ForwardBehavior er veldig dum, så bruker ikke sanseinput
-        self.motor_recommendations = ('F', 1)
+        self.motor_recommendations = ('F', 0.25)
         self.match_degree = 1
 
 
