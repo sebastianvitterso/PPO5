@@ -96,7 +96,7 @@ class AvoidCollisionBehavior(Behavior):
 class FollowLineBehavior(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
-        self.threshold = 0.5
+        self.threshold = 0.2
 
     def sense_and_act(self):
         if self.sensobs[0].sensor_value[0] < self.threshold and self.sensobs[0].sensor_value[5] < self.threshold:

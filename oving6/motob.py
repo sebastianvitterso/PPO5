@@ -1,10 +1,11 @@
 from motors import Motors
+
+
 class Motob:
     def __init__(self):
         self.motors = Motors()
         self.value = None
 
-    
     # Motor recommendation format:
     # (F/B, [0, 1])  - Forward/backward, speed 0-1
     # (L/R, [0, 180]) - Left/right, 0-180 degrees
@@ -26,4 +27,3 @@ class Motob:
 
     def stop(self):
         self.motors.stop()
-             
