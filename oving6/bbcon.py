@@ -19,10 +19,10 @@ class BBCON:
 
     def setup(self):
         rs = ReflectanceSensors()
-        #ir = IRProximitySensor()
+        # ir = IRProximitySensor()
         us = Ultrasonic()
         rsob = ReflectanceSensob(rs)
-        #irob = IRProximitySensob()
+        # irob = IRProximitySensob()
         usob = UltrasonicSensob(us)
         self.add_sensob(rsob)
         self.add_sensob(usob)
@@ -57,9 +57,9 @@ class BBCON:
         for behavior in self.behaviors:
             behavior.update()
 
-        motorRecc = self.arbitrator.choose_action_deterministic()
+        motor_recc = self.arbitrator.choose_action_deterministic()
 
-        self.motob.update(motorRecc)
+        self.motob.update(motor_recc)
 
         time.sleep(.1)
 
