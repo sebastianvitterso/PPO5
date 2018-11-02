@@ -8,6 +8,7 @@ from irproximity_sensor import IRProximitySensor
 from ultrasonic import Ultrasonic
 from camera import Camera
 from threading import Thread
+from zumo_button import ZumoButton
 
 
 class BBCON:
@@ -34,7 +35,12 @@ class BBCON:
         self.add_sensob(rsob)
 
         my_camera = Camera()
-        followgreenb = FollowGreenFlask(self, [my_camera], False, 0.9)
+        followgreensensob = GreenDirectionSensob(my_camera)
+        followgreenb = FollowGreenFlask(self, [followgreensensob], False, 1)
+        self.add_behavior(followgreenb)
+        self.activate_behavior(followgreenb)
+        self.add_sensob(followgreensensob)
+
 
         # Avoid Collision
         us = Ultrasonic()
@@ -95,10 +101,9 @@ def ultrasonicloop(ussensob):
         ussensob.refresh()
 
 
-
 if __name__ == "__main__":
     b = BBCON()
-    time.sleep(2)
+    ZumoButton().wait_for_press()
     t = Thread(target=ultrasonicloop, args=(b.usob, ))
     t.start()
     while True:

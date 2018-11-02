@@ -22,7 +22,8 @@ class Ultrasonic():
         self.value = self.sensor_get_value()
 
     def reset(self):
-        self.value = None
+        # self.value = None
+        pass
 
     def sensor_get_value(self):
         GPIO.setup(self.trig_pin, GPIO.OUT)
