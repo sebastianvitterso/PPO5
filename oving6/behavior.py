@@ -143,9 +143,9 @@ class FollowGreenFlask(Behavior):
         direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-8, 0 betyr at den ikke ser noe grønt
         
         if direction > 0:
-            if direction < 4:
+            if direction > 3:
                 self.motor_recommendations = ('L', 1)
-            elif direction > 5:
+            elif direction < 3:
                 self.motor_recommendations = ('R', 1)
             else:
                 self.motor_recommendations = ('F', 0.5)
