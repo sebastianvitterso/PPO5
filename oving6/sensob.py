@@ -39,8 +39,12 @@ class UltrasonicSensob(Sensob):
         Sensob.__init__(self, sensor)
 
     def update(self):
-        Sensob.update(self)
+        # Sensob.update(self) - removed becuz threading
+        self.sensor_value = self.sensor.get_value()
         print("Ultrasonic Sensor: \n", self.sensor_value)
+
+    def refresh(self):
+        self.sensor.update()
 
 
 class GreenDirectionSensob(Sensob):

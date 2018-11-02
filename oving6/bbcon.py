@@ -7,6 +7,7 @@ from reflectance_sensors import ReflectanceSensors
 from irproximity_sensor import IRProximitySensor
 from ultrasonic import Ultrasonic
 from camera import Camera
+from threading import Thread
 
 
 class BBCON:
@@ -27,22 +28,21 @@ class BBCON:
         #LineBehavior
         rs = ReflectanceSensors()
         rsob = ReflectanceSensob(rs)
-        lineb = FollowLineBehavior(self, [rsob], False, 0.9)
+        lineb = FollowLineBehavior(self, [rsob], False, 0.7)
         self.add_behavior(lineb)
         self.activate_behavior(lineb)
         self.add_sensob(rsob)
 
-        camera = Camera()
-        followgreenb = FollowGreenFlask(self, [camera], False, 0.9)
+        my_camera = Camera()
+        followgreenb = FollowGreenFlask(self, [my_camera], False, 0.9)
 
-
-        #Avoid Collision
-        #us = Ultrasonic()
-        #usob = UltrasonicSensob(us)
-        #self.add_sensob(usob)
-        #avoidb = AvoidCollisionBehavior(self, [usob], False, 0.8)
-        #self.add_behavior(avoidb)
-        #self.activate_behavior(avoidb)
+        # Avoid Collision
+        us = Ultrasonic()
+        self.usob = UltrasonicSensob(us)
+        self.add_sensob(self.usob)
+        avoidb = AvoidCollisionBehavior(self, [self.usob], False, 0.8)
+        self.add_behavior(avoidb)
+        self.activate_behavior(avoidb)
 
         #ir = IRProximitySensor()
         #irob = IRProximitySensob()
@@ -90,8 +90,16 @@ class BBCON:
         self.motob.stop()
 
 
+def ultrasonicloop(ussensob):
+    while True:
+        ussensob.refresh()
+
+
+
 if __name__ == "__main__":
     b = BBCON()
     time.sleep(2)
+    t = Thread(target=ultrasonicloop, args=(b.usob, ))
+    t.start()
     while True:
         b.run_one_timestep()
