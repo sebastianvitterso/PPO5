@@ -1,10 +1,11 @@
 from motors import Motors
+
+
 class Motob:
     def __init__(self):
         self.motors = Motors()
         self.value = None
 
-    
     # Motor recommendation format:
     # (F/B, [0, 1])  - Forward/backward, speed 0-1
     # (L/R, [0, 180]) - Left/right, 0-180 degrees
@@ -15,9 +16,9 @@ class Motob:
         elif motor_recommendation[0] == 'B':
             self.value = (-motor_recommendation[1], -motor_recommendation[1])
         elif motor_recommendation[0] == 'R':
-            self.value = (0.25, 0)
+            self.value = (0.3, 0)
         elif motor_recommendation[0] == 'L':
-            self.value = (0, 0.25)
+            self.value = (0, 0.3)
 
         self.operationalize()
 
@@ -26,4 +27,3 @@ class Motob:
 
     def stop(self):
         self.motors.stop()
-             

@@ -61,7 +61,7 @@ class ForwardBehavior(Behavior):
         pass
 
     def sense_and_act(self):  # ForwardBehavior er veldig dum, så bruker ikke sanseinput
-        self.motor_recommendations = ('F', 0.25)
+        self.motor_recommendations = ('F', 0.3)
         self.match_degree = 1
 
 
@@ -96,7 +96,7 @@ class AvoidCollisionBehavior(Behavior):
 class FollowLineBehavior(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
-        self.threshold = 0.5
+        self.threshold = 0.2
 
     def sense_and_act(self):
         if self.sensobs[0].sensor_value[0] < self.threshold and self.sensobs[0].sensor_value[5] < self.threshold:
@@ -112,7 +112,7 @@ class FollowLineBehavior(Behavior):
             self.match_degree = 1
             self.motor_recommendations = ('R', 45)
         else:
-            self.motor_recommendations = ('F', 0.25)
+            self.motor_recommendations = ('F', 0.3)
             self.match_degree = 0.2
 
 
