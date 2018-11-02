@@ -62,12 +62,14 @@ class GreenDirectionSensob(Sensob):
         max_region = 0
         max_region_value = -1
         # 8 regioner
+        width = 200
+        region_w = 40
 
         for region in range(0, 5):
-            region_count = 0
-            for col in range(0, 40):
-                for row in range(0, 200):
-                    if wta_image[row][col*region] == (0, 255, 0):
+        region_count = 0
+        for col in range(0, region_w):
+            for row in range(0, width):
+                if wta_image[row*width+region*region_w+col] == (0, 255, 0):
                         region_count += 1
 
             if region_count > max_region_value:
