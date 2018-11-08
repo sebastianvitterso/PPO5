@@ -58,24 +58,26 @@ class GreenDirectionSensob(Sensob):
        self.sensor_value = self.process_image()
 
     def process_image(self):
+        # Skal finne den regionen med flest grønne pixler over et visst antall.
         wta_image = self.imager.map_color_wta(self.sensor_value)
-        max_region = 0
-        max_region_value = -1
-        # 8 regioner
         width = 200
         height = 200
-        region_w = 40
+        threshold = (height * region_width) / 2
+        max_region = 0
+        max_region_count = threshold
+        regions = 5
+        region_width = width / regions
 
-        for region in range(0, 5):
+        for region in range(0, regions):
             region_count = 0
-            for col in range(0, region_w):
+            for col in range(0, region_width):
                 for row in range(0, height):
-                    if wta_image.get_pixel(row, region*region_w+col) == (0, 255, 0):
+                    if wta_image.get_pixel(row, region*region_width+col) == (0, 255, 0):
                             region_count += 1
 
-                if region_count > max_region_value:
+                if region_count > max_region_count:
                     max_region = region + 1
-                    max_region_value = region_count
+                    max_region_count = region_count
 
         return max_region
 
