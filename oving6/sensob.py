@@ -32,7 +32,9 @@ class ReflectanceSensob(Sensob):
 class IRProximitySensob(Sensob):
     def __init__(self, sensor):
         Sensob.__init__(self, sensor)
-
+    
+    def update(self):
+        Sensob.update(self)
 
 class UltrasonicSensob(Sensob):
     def __init__(self, sensor):
