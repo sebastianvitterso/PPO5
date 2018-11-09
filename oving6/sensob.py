@@ -81,7 +81,7 @@ class GreenDirectionSensob(Sensob):
             region_count = 0
             for col in range(0, region_width):
                 for row in range(0, height):
-                    pice = wta_image.get_pixel(row, region*region_width + col)
+                    pice = wta_image.get_pixel(region*region_width + col, row)
                     if pice[2] > 50:
                             region_count += 1
 
