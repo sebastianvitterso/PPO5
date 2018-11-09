@@ -53,8 +53,8 @@ class GreenDirectionSensob(Sensob):
     def __init__(self, sensor):
         Sensob.__init__(self, sensor)
         self.direction = 0
-        self.sensor.img_width = 100
-        self.sensor.img_height = 100
+        self.sensor.img_width = 249
+        self.sensor.img_height = 10
         self.imager = imager2.Imager(False, False, self.sensor.img_width, self.sensor.img_height)
 
     def update(self):
@@ -70,7 +70,7 @@ class GreenDirectionSensob(Sensob):
         wta_image = self.imager.map_color_wta(self.sensor_value, 0.34)
         width = self.sensor.img_width
         height = self.sensor.img_height
-        regions = 5
+        regions = 3
         region_width = int(width / regions)
         threshold = (height * region_width) / 2
         max_region = 0

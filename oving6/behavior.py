@@ -181,14 +181,14 @@ class FollowGreenFlask(Behavior):
         print("direction of reefer:",direction)
 
         if direction > 0:
-            if direction > 3:
-                self.motor_recommendations = ('L', 1)
-            elif direction < 3:
+            if direction > 2:
                 self.motor_recommendations = ('R', 1)
+            elif direction < 2:
+                self.motor_recommendations = ('L', 1)
             else:
                 self.motor_recommendations = ('F', 0.5)
 
-            self.match_degree = 0.9
+            self.match_degree = 1
         else:
             self.match_degree = 0.2
             self.motor_recommendations = ('R', 1)
