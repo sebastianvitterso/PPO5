@@ -75,7 +75,7 @@ class GreenDirectionSensob(Sensob):
         threshold = (height * region_width) / 2
         max_region = 0
         max_region_count = threshold
-
+        print("Saving wta.jpeg")
         wta_image.dump_image("WTA.jpeg")
 
         for region in range(0, regions):
