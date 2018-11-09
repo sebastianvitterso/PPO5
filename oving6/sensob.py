@@ -36,6 +36,7 @@ class IRProximitySensob(Sensob):
     def update(self):
         Sensob.update(self)
 
+
 class UltrasonicSensob(Sensob):
     def __init__(self, sensor):
         Sensob.__init__(self, sensor)
@@ -74,8 +75,8 @@ class GreenDirectionSensob(Sensob):
         threshold = (height * region_width) / 2
         max_region = 0
         max_region_count = threshold
-        print("Saving wta.jpeg")
-        wta_image.dump_image("WTA.jpeg")
+        # print("Saving wta.jpeg")
+        # wta_image.dump_image("WTA.jpeg")
 
         for region in range(0, regions):
             region_count = 0
