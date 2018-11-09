@@ -111,7 +111,7 @@ class AvoidCollisionBehavior(Behavior):
         if obstacle_direction[1]:
             # Dersom hindring baade foran, venstre og hoyre: rygg
             if obstacle_direction[0] and obstacle_direction[2]:
-                self.motor_recommendations('F', -1)
+                self.motor_recommendations = ('F', -1)
             # Dersom hindring baade foran og venstre: skarp sving til høyre
             elif obstacle_direction[0]:
                 self.motor_recommendations = ('R', 2)
@@ -177,8 +177,9 @@ class FollowGreenFlask(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
     
     def sense_and_act(self):
-        direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-8, 0 betyr at den ikke ser noe gront
-        print("direction of reefer:",direction) 
+        direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe gront
+        print("direction of reefer:",direction)
+
         if direction > 0:
             if direction > 3:
                 self.motor_recommendations = ('L', 1)
