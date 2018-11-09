@@ -178,7 +178,7 @@ class FollowGreenFlask(Behavior):
     
     def sense_and_act(self):
         direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-8, 0 betyr at den ikke ser noe gront
-        
+        print("direction of reefer:",direction) 
         if direction > 0:
             if direction > 3:
                 self.motor_recommendations = ('L', 1)
