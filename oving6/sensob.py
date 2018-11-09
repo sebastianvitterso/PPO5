@@ -58,12 +58,12 @@ class GreenDirectionSensob(Sensob):
         self.sensor.image_width = 50
 
     def update(self):
-        print("Camera Sensor: \n", self.sensor_value)
+        print("Camera Sensor: \n", self.direction)
 
 
     def refresh(self):
         self.sensor_value = self.sensor.update()
-        self.sensor_value = self.process_image()
+        self.direction = self.process_image()
 
     def process_image(self):
         # Skal finne den regionen med flest gronne pixler over et visst antall.

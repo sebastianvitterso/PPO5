@@ -177,7 +177,7 @@ class FollowGreenFlask(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
     
     def sense_and_act(self):
-        direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe gront
+        direction = self.sensobs[0].direction # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe gront
         print("direction of reefer:",direction)
 
         if direction > 0:
