@@ -146,23 +146,13 @@ class FollowLineBehavior(Behavior):
             self.match_degree = 0.5
             direction = random.choice(['R', 'L'])
             self.motor_recommendations = (direction, 2)
-        # elif sensor_val[1] < self.threshold and sensor_val[4] < self.threshold:
-        #    # svart paa begge indre sider
-        #    self.match_degree = 0.5
-        #    direction = random.choice(['R', 'L'])
-        #    self.motor_recommendations = (direction, 2)
+            self.active_flag = False
         elif sensor_val[0] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('L', 2)
         elif sensor_val[5] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('R', 2)
-        # elif sensor_val[2] < self.threshold:
-        #    self.motor_recommendations = ('L', 1)
-        #    self.match_degree = 1
-        # elif sensor_val[3] < self.threshold:
-        #    self.motor_recommendations = ('R', 1)
-        #    self.match_degree = 1
         elif sensor_val[2] < self.threshold or sensor_val[3] < self.threshold:
             # svart paa en av de i midten
             self.motor_recommendations = ('F', 0.3)
