@@ -145,13 +145,11 @@ class FollowLineBehavior(Behavior):
             self.match_degree = 0.5
             direction = random.choice(['R', 'L'])
             self.motor_recommendations = (direction, 2)
-            print("heyah")
         #elif sensor_val[1] < self.threshold and sensor_val[4] < self.threshold:
         #    # svart paa begge indre sider
         #    self.match_degree = 0.5
         #    direction = random.choice(['R', 'L'])
         #    self.motor_recommendations = (direction, 2)
-        #    print("heyah")
         elif sensor_val[0] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('L', 2)
@@ -178,7 +176,7 @@ class FollowGreenFlask(Behavior):
     
     def sense_and_act(self):
         direction = self.sensobs[0].direction # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe gront
-        print("direction of reefer:",direction)
+        print("Blue_Direction: ",direction)
 
         if direction > 0:
             if direction > 2:

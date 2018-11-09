@@ -26,7 +26,7 @@ class ReflectanceSensob(Sensob):
 
     def update(self):
         Sensob.update(self)
-        print("Reflectance Sensor: \n", self.sensor_value)
+        print("Reflectance Sensor: ", self.sensor_value)
 
 
 class IRProximitySensob(Sensob):
@@ -43,7 +43,7 @@ class UltrasonicSensob(Sensob):
     def update(self):
         # Sensob.update(self) - removed becuz threading
         self.sensor_value = self.sensor.get_value()
-        print("Ultrasonic Sensor: \n", self.sensor_value)
+        print("Ultrasonic Sensor: ", self.sensor_value)
 
     def refresh(self):
         self.sensor.update()
@@ -53,13 +53,12 @@ class GreenDirectionSensob(Sensob):
     def __init__(self, sensor):
         Sensob.__init__(self, sensor)
         self.direction = 0
-        self.sensor.img_width = 120
+        self.sensor.img_width = 90
         self.sensor.img_height = 40
         self.imager = imager2.Imager(False, False, self.sensor.img_width, self.sensor.img_height)
 
     def update(self):
-        print("Camera Sensor: \n", self.direction)
-
+        print("Camera Sensor: ", self.direction)
 
     def refresh(self):
         self.sensor_value = self.sensor.update()
