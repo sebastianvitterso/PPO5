@@ -31,6 +31,7 @@ class ReflectanceSensob(Sensob):
     def is_at_end(self):
         if self.sensor_value[0] < 0.2 and self.sensor_value[5] < 0.2:
             return True
+        return False
 
 
 class IRProximitySensob(Sensob):
