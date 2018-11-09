@@ -53,9 +53,9 @@ class GreenDirectionSensob(Sensob):
     def __init__(self, sensor):
         Sensob.__init__(self, sensor)
         self.direction = 0
-        self.imager = imager2.Imager()
         self.sensor.img_width = 100
         self.sensor.img_height = 100
+        self.imager = imager2.Imager(False, False, self.sensor.img_width, self.sensor.img_height)
 
     def update(self):
         print("Camera Sensor: \n", self.direction)
@@ -80,7 +80,8 @@ class GreenDirectionSensob(Sensob):
             region_count = 0
             for col in range(0, region_width):
                 for row in range(0, height):
-                    if wta_image.get_pixel(row, region*region_width+col) == (0, 255, 0):
+                    pice = wta_image.get_pixel(row, region*region_width + col)
+                    if pice[1] > 50:
                             region_count += 1
 
                 if region_count > max_region_count:
