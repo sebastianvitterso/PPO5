@@ -115,11 +115,11 @@ class AvoidCollisionBehavior(Behavior):
             if obstacle_direction[0] and obstacle_direction[2]:
                 self.motor_recommendations = ('F', -1)
             # Dersom hindring baade foran og venstre: skarp sving til høyre
-            elif obstacle_direction[0]:
-                self.motor_recommendations = ('R', 2)
+            elif obstacle_direction[2]:
+                self.motor_recommendations = ('L', 2)
             # Dersom hindring både foran og hoyre eller bare foran: skarp sving til venstre
             else:
-                self.motor_recommendations = ('L', 2)
+                self.motor_recommendations = ('R', 2)
 
         # Dersom hindring baade venstre og høyre: kjor forover
         elif obstacle_direction[0] and obstacle_direction[1]:
