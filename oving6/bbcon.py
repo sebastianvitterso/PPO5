@@ -113,4 +113,5 @@ if __name__ == "__main__":
     t2 = Thread(target=cameraloop, args=(b.followgreensensob, ))
     t2.start()
     while True:
+        print("\n\n")
         b.run_one_timestep()
