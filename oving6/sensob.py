@@ -54,6 +54,8 @@ class GreenDirectionSensob(Sensob):
         Sensob.__init__(self, sensor)
         self.direction = 0
         self.imager = imager2.Imager()
+        self.sensor.image_width = 150
+        self.sensor.image_width = 50
 
     def update(self):
        self.sensor_value = self.sensor.update()
@@ -62,8 +64,8 @@ class GreenDirectionSensob(Sensob):
     def process_image(self):
         # Skal finne den regionen med flest gronne pixler over et visst antall.
         wta_image = self.imager.map_color_wta(self.sensor_value, 0.34)
-        width = 200
-        height = 200
+        width = self.sensor.img_width
+        height = self.sensor.img_height
         regions = 5
         region_width = int(width / regions)
         threshold = (height * region_width) / 2
