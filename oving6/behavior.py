@@ -109,26 +109,26 @@ class AvoidCollisionBehavior(Behavior):
 
         # Dersom hindring rett foran
         if obstacle_direction[1]:
-            # Dersom hindring både foran, venstre og høyre: rygg
+            # Dersom hindring baade foran, venstre og hoyre: rygg
             if obstacle_direction[0] and obstacle_direction[2]:
                 self.motor_recommendations('F', -1)
-            # Dersom hindring både foran og venstre: skarp sving til høyre
+            # Dersom hindring baade foran og venstre: skarp sving til høyre
             elif obstacle_direction[0]:
                 self.motor_recommendations = ('R', 2)
-            # Dersom hindring både foran og høyre eller bare foran: skarp sving til venstre
+            # Dersom hindring både foran og hoyre eller bare foran: skarp sving til venstre
             else:
                 self.motor_recommendations = ('L', 2)
 
-        # Dersom hindring både venstre og høyre: kjør forover
+        # Dersom hindring baade venstre og høyre: kjor forover
         elif obstacle_direction[0] and obstacle_direction[1]:
             self.motor_recommendations = ('F', 0.6)
-        # Dersom hindring venstre: slak sving til høyre
+        # Dersom hindring venstre: slak sving til hoyre
         elif obstacle_direction[0]:
             self.motor_recommendations = ('R', 1)
-        # Dersom hindring til høyre: slak sving til venstre
+        # Dersom hindring til hoyre: slak sving til venstre
         elif obstacle_direction[2]:
             self.motor_recommendations = ('L', 1)
-        # Dersom ingen hindringer: kjør rett fram
+        # Dersom ingen hindringer: kjor rett fram
         else:
             self.motor_recommendations = ('F', 0.6)
 
@@ -147,7 +147,7 @@ class FollowLineBehavior(Behavior):
             self.motor_recommendations = (direction, 2)
             print("heyah")
         #elif sensor_val[1] < self.threshold and sensor_val[4] < self.threshold:
-        #    # svart på begge indre sider
+        #    # svart paa begge indre sider
         #    self.match_degree = 0.5
         #    direction = random.choice(['R', 'L'])
         #    self.motor_recommendations = (direction, 2)
@@ -165,7 +165,7 @@ class FollowLineBehavior(Behavior):
         #    self.motor_recommendations = ('R', 1)
         #    self.match_degree = 1
         elif sensor_val[2] < self.threshold or sensor_val[3] < self.threshold:
-            # svart på en av de i midten
+            # svart paa en av de i midten
             self.motor_recommendations = ('F', 0.3)
             self.match_degree = 1
         else:
@@ -177,7 +177,7 @@ class FollowGreenFlask(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
     
     def sense_and_act(self):
-        direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-8, 0 betyr at den ikke ser noe grønt
+        direction = self.sensobs[0].sensor_value # returnerer verdi fra 1-8, 0 betyr at den ikke ser noe gront
         
         if direction > 0:
             if direction > 3:
