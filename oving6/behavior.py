@@ -49,12 +49,11 @@ class ForwardBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
 
     def consider_deactivation(self):
-        """if (putTest):  # hva er testen?
+        if self.sensobs[0].is_at_end()
             self.bbcon.deactivate_behavior(self)
             self.active_flag = False
         else:
-            pass"""
-        pass
+            pass
 
     def consider_activation(self):
         """if (putTest):  # hva er testen?
@@ -139,6 +138,13 @@ class FollowLineBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
         self.threshold = 0.2
 
+    def consider_deactivation(self):
+        if self.sensobs.is_at_end():
+            self.bbcon.deactivate_behavior(self)
+            self.active_flag = False
+        else:
+            pass
+
     def sense_and_act(self):
         sensor_val = self.sensobs[0].sensor_value
         if sensor_val[0] < self.threshold and sensor_val[5] < self.threshold:
@@ -147,6 +153,7 @@ class FollowLineBehavior(Behavior):
             direction = random.choice(['R', 'L'])
             self.motor_recommendations = (direction, 2)
             self.active_flag = False
+            self.bbcon.deactivate_behavior(self)
         elif sensor_val[0] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('L', 2)
