@@ -21,23 +21,23 @@ class BBCON:
         self.setup()
 
     def setup(self):
-        # Forward Behavior
-        forwardb = ForwardBehavior(self, [], False, 0.0)
-        self.add_behavior(forwardb)
-        self.activate_behavior(forwardb)
-
         # LineBehavior
         rs = ReflectanceSensors()
         rsob = ReflectanceSensob(rs)
-        lineb = FollowLineBehavior(self, [rsob], False, 0.0)
+        lineb = FollowLineBehavior(self, [rsob], False, 0.7)
         self.add_behavior(lineb)
         self.activate_behavior(lineb)
         self.add_sensob(rsob)
-        
+
+        # Forward Behavior
+        forwardb = ForwardBehavior(self, [rsob], False, 0.2)
+        self.add_behavior(forwardb)
+        self.activate_behavior(forwardb)
+
         # Follow green flask
         my_camera = Camera()
         self.followgreensensob = GreenDirectionSensob(my_camera)
-        followgreenb = FollowGreenFlask(self, [self.followgreensensob], False, 1)
+        followgreenb = FollowGreenFlask(self, [self.followgreensensob, rsob], False, 1.0)
         self.add_behavior(followgreenb)
         self.activate_behavior(followgreenb)
         self.add_sensob(self.followgreensensob)
@@ -49,7 +49,7 @@ class BBCON:
         self.usob = UltrasonicSensob(us)
         self.add_sensob(self.irob)
         self.add_sensob(self.usob)
-        avoidb = AvoidCollisionBehavior(self, [self.usob, self.irob], False, 0.0)
+        avoidb = AvoidCollisionBehavior(self, [self.usob, self.irob, rsob], False, 1.0)
         self.add_behavior(avoidb)
         self.activate_behavior(avoidb)
 

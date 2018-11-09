@@ -28,6 +28,10 @@ class ReflectanceSensob(Sensob):
         Sensob.update(self)
         print("Reflectance Sensor: ", self.sensor_value)
 
+    def is_at_end(self):
+        if self.sensor_value[0] < 0.2 and self.sensor_value[5] < 0.2:
+            return True
+
 
 class IRProximitySensob(Sensob):
     def __init__(self, sensor):
@@ -35,6 +39,7 @@ class IRProximitySensob(Sensob):
     
     def update(self):
         Sensob.update(self)
+        print("IR Proximity Sensor: ", self.sensor_value)
 
 
 class UltrasonicSensob(Sensob):
