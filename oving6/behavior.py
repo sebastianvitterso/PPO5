@@ -182,9 +182,9 @@ class FollowGreenFlask(Behavior):
 
         if direction > 0:
             if direction > 2:
-                self.motor_recommendations = ('R', 3)
+                self.motor_recommendations = ('R', 4)
             elif direction < 2:
-                self.motor_recommendations = ('L', 3)
+                self.motor_recommendations = ('L', 4)
             else:
                 self.motor_recommendations = ('F', 0.3)
 
