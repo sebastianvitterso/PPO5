@@ -64,11 +64,11 @@ class GreenDirectionSensob(Sensob):
         wta_image = self.imager.map_color_wta(self.sensor_value)
         width = 200
         height = 200
+        regions = 5
+        region_width = int(width / regions)
         threshold = (height * region_width) / 2
         max_region = 0
         max_region_count = threshold
-        regions = 5
-        region_width = width / regions
 
         for region in range(0, regions):
             region_count = 0
