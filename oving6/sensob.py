@@ -39,6 +39,7 @@ class IRProximitySensob(Sensob):
     
     def update(self):
         Sensob.update(self)
+        print("IR Proximity Sensor: ", self.sensor_value)
 
 
 class UltrasonicSensob(Sensob):
