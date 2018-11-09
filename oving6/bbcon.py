@@ -36,11 +36,11 @@ class BBCON:
         
         # Follow green flask
         my_camera = Camera()
-        followgreensensob = GreenDirectionSensob(my_camera)
-        followgreenb = FollowGreenFlask(self, [followgreensensob], False, 1)
+        self.followgreensensob = GreenDirectionSensob(my_camera)
+        followgreenb = FollowGreenFlask(self, [self.followgreensensob], False, 1)
         self.add_behavior(followgreenb)
         self.activate_behavior(followgreenb)
-        self.add_sensob(followgreensensob)
+        self.add_sensob(self.followgreensensob)
 
 
         # Avoid Collision
@@ -101,10 +101,17 @@ def ultrasonicloop(ussensob):
         ussensob.refresh()
 
 
+def cameraloop(greendirectionsensob):
+    while True:
+        greendirectionsensob.refresh()
+
+
 if __name__ == "__main__":
     b = BBCON()
     ZumoButton().wait_for_press()
     t = Thread(target=ultrasonicloop, args=(b.usob, ))
     t.start()
+    t2 = Thread(target=cameraloop, args=(b.followgreensensob, ))
+    t2.start()
     while True:
         b.run_one_timestep()
