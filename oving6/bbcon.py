@@ -42,7 +42,6 @@ class BBCON:
         self.activate_behavior(followgreenb)
         self.add_sensob(self.followgreensensob)
 
-
         # Avoid Collision
         us = Ultrasonic()
         ir = IRProximitySensor()

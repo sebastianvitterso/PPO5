@@ -54,8 +54,8 @@ class GreenDirectionSensob(Sensob):
         Sensob.__init__(self, sensor)
         self.direction = 0
         self.imager = imager2.Imager()
-        self.sensor.image_width = 150
-        self.sensor.image_width = 50
+        self.sensor.img_width = 100
+        self.sensor.img_height = 100
 
     def update(self):
         print("Camera Sensor: \n", self.direction)
