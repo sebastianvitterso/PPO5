@@ -49,7 +49,7 @@ class ForwardBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
 
     def consider_deactivation(self):
-        if self.sensobs[0].is_at_end()
+        if self.sensobs[0].is_at_end():
             self.bbcon.deactivate_behavior(self)
             self.active_flag = False
         else:
