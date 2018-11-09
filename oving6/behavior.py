@@ -1,5 +1,6 @@
 import random
 
+
 class Behavior:
     def __init__(self, bbcon, sensobs, halt_request, priority):
         self.bbcon = bbcon
@@ -48,19 +49,19 @@ class ForwardBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
 
     def consider_deactivation(self):
-        '''if (putTest):  # hva er testen?
+        """if (putTest):  # hva er testen?
             self.bbcon.deactivate_behavior(self)
             self.active_flag = False
         else:
-            pass'''
+            pass"""
         pass
 
     def consider_activation(self):
-        '''if (putTest):  # hva er testen?
+        """if (putTest):  # hva er testen?
             self.bbcon.activate_behavior(self)
             self.active_flag = True
         else:
-            pass'''
+            pass"""
         pass
 
     def sense_and_act(self):  # ForwardBehavior er veldig dum, så bruker ikke sanseinput
@@ -73,19 +74,19 @@ class AvoidCollisionBehavior(Behavior):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
 
     def consider_deactivation(self):
-        '''if (putTest):  # hva er testen?
+        """if (putTest):  # hva er testen?
             self.bbcon.deactivate_behavior(self)
             self.active_flag = False
         else:
-            pass'''
+            pass"""
         pass
 
     def consider_activation(self):
-        '''if (putTest):  # hva er testen?
+        """if (putTest):  # hva er testen?
             self.bbcon.activate_behavior(self)
             self.active_flag = True
         else:
-            pass'''
+            pass"""
         pass
 
     def sense_and_act(self):
@@ -93,12 +94,12 @@ class AvoidCollisionBehavior(Behavior):
         self.match_degree = 0
        
         # Venstre IR here:
-        if self.sensobs[1].sensor_value[0] == True:
+        if self.sensobs[1].sensor_value[0]:
             self.match_degree = 0.5
             obstacle_direction[0] = True
 
         # Høyre IR here:
-        if self.sensobs[1].sensor_value[1] == True:
+        if self.sensobs[1].sensor_value[1]:
             self.match_degree = 0.5
             obstacle_direction[2] = True
         
@@ -145,7 +146,7 @@ class FollowLineBehavior(Behavior):
             self.match_degree = 0.5
             direction = random.choice(['R', 'L'])
             self.motor_recommendations = (direction, 2)
-        #elif sensor_val[1] < self.threshold and sensor_val[4] < self.threshold:
+        # elif sensor_val[1] < self.threshold and sensor_val[4] < self.threshold:
         #    # svart paa begge indre sider
         #    self.match_degree = 0.5
         #    direction = random.choice(['R', 'L'])
@@ -156,10 +157,10 @@ class FollowLineBehavior(Behavior):
         elif sensor_val[5] < self.threshold:
             self.match_degree = 1
             self.motor_recommendations = ('R', 2)
-        #elif sensor_val[2] < self.threshold:
+        # elif sensor_val[2] < self.threshold:
         #    self.motor_recommendations = ('L', 1)
         #    self.match_degree = 1
-        #elif sensor_val[3] < self.threshold:
+        # elif sensor_val[3] < self.threshold:
         #    self.motor_recommendations = ('R', 1)
         #    self.match_degree = 1
         elif sensor_val[2] < self.threshold or sensor_val[3] < self.threshold:
@@ -170,23 +171,24 @@ class FollowLineBehavior(Behavior):
             self.motor_recommendations = ('F', 0.3)
             self.match_degree = 0.2
 
+
 class FollowGreenFlask(Behavior):
     def __init__(self, bbcon, sensobs, halt_request, priority):
         Behavior.__init__(self, bbcon, sensobs, halt_request, priority)
     
     def sense_and_act(self):
-        direction = self.sensobs[0].direction # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe gront
-        print("Blue_Direction: ",direction)
+        direction = self.sensobs[0].direction  # returnerer verdi fra 1-5, 0 betyr at den ikke ser noe gront
+        print("Blue_Direction: ", direction)
 
         if direction > 0:
             if direction > 2:
-                self.motor_recommendations = ('R', 1)
+                self.motor_recommendations = ('R', 3)
             elif direction < 2:
-                self.motor_recommendations = ('L', 1)
+                self.motor_recommendations = ('L', 3)
             else:
                 self.motor_recommendations = ('F', 0.3)
 
             self.match_degree = 1
         else:
             self.match_degree = 0.2
-            self.motor_recommendations = ('R', 1)
+            self.motor_recommendations = ('R', 3)
